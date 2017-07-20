@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import {expect} from 'chai';
 
-import Navigation from './Navigation.jsx';
+import Navigation from './Navigation.js';
 
 
 describe('<Navigation />', function(){

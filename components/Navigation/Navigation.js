@@ -8,7 +8,7 @@ render(){
       <a href="#">Lucid Web Dream</a>
       <a href="#">About</a>
       <a href="#">Contact</a>
-      //<a href="#">Portfolio</a>
+      <a href="#">Portfolio</a>
     </nav>
   );
   }

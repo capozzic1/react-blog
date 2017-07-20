@@ -2,10 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 
 // env
-const buildDirectory = './dist/';
+const buildDirectory = './build';
 
 module.exports = {
-  entry: './lib/main.jsx',
+  entry: 'index.js',
   devServer: {
     hot: true,
     inline: true,
@@ -18,7 +18,7 @@ module.exports = {
   output: {
     path: path.resolve(buildDirectory),
     filename: 'app.js',
-    publicPath: 'http://localhost:7700/dist',
+    publicPath: 'http://localhost:7700/build',
   },
   externals: {
     'cheerio': 'window',
