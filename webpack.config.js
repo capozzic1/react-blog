@@ -5,20 +5,20 @@ const webpack = require('webpack');
 const buildDirectory = './build';
 
 module.exports = {
-  entry: 'index.js',
+  entry: './index.js',
   devServer: {
     hot: true,
     inline: true,
-    port: 7700,
+    port: 3000,
     historyApiFallback: true,
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx']
   },
   output: {
     path: path.resolve(buildDirectory),
     filename: 'app.js',
-    publicPath: 'http://localhost:7700/build',
+    publicPath: 'http://localhost:3000/build',
   },
   externals: {
     'cheerio': 'window',
