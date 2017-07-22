@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 // env
-const buildDirectory = './build';
+const buildDirectory = './public/build';
 
 module.exports = {
   entry: './index.js',
@@ -17,8 +17,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(buildDirectory),
-    filename: 'app.js',
-    publicPath: 'http://localhost:3000/build',
+    filename: 'app.js'
+
   },
   externals: {
     'cheerio': 'window',

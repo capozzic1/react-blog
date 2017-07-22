@@ -4,6 +4,9 @@ import React from 'react';
 import Home from './views/Home/Home.js';
 import PostList from './views/PostList/PostList.js';
 
+const Redirect2 = () => {
+ window.location = 'https://lucidwebblog.auth0.com/login?client=aNNJJ3d1siwKE-8cp2p8o8ylKDlT6boI';
+}
 
 
 class App extends React.Component {
@@ -13,6 +16,8 @@ class App extends React.Component {
     <Switch>
       <Route path='/' component={Home} />
       <Route path='/postList' component={PostList} />
+
+      <Route path='/login'  component={() => window.location = 'https://example.zendesk.com/hc/en-us/articles/123456789-Privacy-Policies'} />
     </Switch>
   </BrowserRouter>
       );

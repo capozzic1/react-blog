@@ -5,7 +5,9 @@
   "main": "./index.js",
   "scripts": {
     "test": "mocha -w test/helpers/browser.js */*/*.spec.js",
-    "dev:hot": "webpack-dev-server --hot --inline --progress --colors --watch --display-error-details --display-cached --content-base ./"
+    "start":"webpack --progress --colors",
+    "dev:client": "webpack-dev-server --hot --inline --progress --colors --watch --display-error-details --display-cached --content-base ./",
+    "dev-server": "nodemon server.js localhost 3000"
   },
   "ava": {
     "require": [
@@ -41,7 +43,9 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "auth0-js": "^8.8.0",
     "axios": "^0.9.1",
+    "express": "^4.15.3",
     "md5": "^2.0.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
