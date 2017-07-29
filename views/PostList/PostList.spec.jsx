@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import {expect} from 'chai';
 
-import PostList from './PostList.js';
+import PostList from './PostList';
 
 
 describe('<PostList />', function(){
@@ -11,5 +11,4 @@ describe('<PostList />', function(){
     const wrapper = shallow(<PostList />);
     expect(wrapper.find('div')).to.have.length(1);
   });
-
 });

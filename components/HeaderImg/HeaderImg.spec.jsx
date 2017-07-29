@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import {expect} from 'chai';
 
-import HeaderImg from './HeaderImg.js';
+import HeaderImg from './HeaderImg';
 
 describe('<HeaderImg />', function(){
   //it should have 4 links, lucidwebdream, about, contact, portfolio
