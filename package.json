@@ -5,11 +5,11 @@
   "main": "./index.js",
   "scripts": {
     "test": "mocha -w test/helpers/browser.js */*/*.spec.jsx",
-    "start": "npm-run-all webpack server",
+    "start": "npm-run-all dev-client server",
     "server": "nodemon server.js",
     "webpack": "webpack --progress --colors --w",
     "dev-client": "webpack-dev-server --hot --watch ./",
-    "dev-server": "nodemon server.js localhost 3000"
+    "dev-server": "nodemon server.js"
   },
   "ava": {
     "require": [
@@ -52,11 +52,13 @@
     "sinon": "^1.17.3"
   },
   "dependencies": {
-    "axios": "^0.9.1",
-    "mongoose": "^4.11.4",
+    "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
     "express": "^4.15.3",
     "fs": "0.0.1-security",
     "loglevel": "^1.4.1",
+    "mongoose": "^4.11.4",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.2",

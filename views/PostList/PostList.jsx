@@ -2,11 +2,24 @@
 import React from 'react';
 
 export default class PostList extends React.Component {
-render(){
-  return (
-    <div className = "post-container">
+  render() {
+    const posts = this.props.posts;
 
-    </div>
-      );
-      }
-      }
+
+    /*  const postDivs = posts.map((post) => {
+
+    });
+    */
+    if (posts.length !== 0) {
+      const postDivs = posts.map((post) => {
+        console.log(post);
+      });
+    }
+
+    return (
+      <div className="post-container">
+
+      </div>
+    );
+  }
+}

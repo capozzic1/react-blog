@@ -15,7 +15,7 @@ module.exports = {
   "react/jsx-uses-vars": "error",
   "react/self-closing-comp": ["error", {
     "component": false,
-    "html": true
+    "html": false
   }]
 }
 
