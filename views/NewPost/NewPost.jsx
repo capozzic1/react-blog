@@ -31,15 +31,19 @@ export default class NewPost extends React.Component {
     if (this.state.title === '' || this.state.body === '') {
       alert('Please make sure both fields are filled out');
     }
+    const dateObj = new Date();
+    const currentDate = dateObj.toString();
 
-    this.handlePost(this.state.title, this.state.body);
+    this.handlePost(this.state.title, this.state.body, currentDate);
   }
 
-  handlePost(title, body) {
+  handlePost(title, body, date) {
     axios.post('http://localhost:4000/newpost', {
       title,
       body,
       author: this.state.author,
+      date,
+
     })
       .then((response) => {
         console.log(response);

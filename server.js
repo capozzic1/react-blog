@@ -14,10 +14,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.post('/newpost', (req, res) => {
   // console.log(typeof req.body);
+
+
   const postInfo = req.body;
   const newPost = new Post({ title: postInfo.title,
     author: postInfo.author,
-    body: postInfo.body });
+    body: postInfo.body,
+    date: postInfo.date });
   // console.log(newPost);
 
   newPost.save((err, fluffy) => {

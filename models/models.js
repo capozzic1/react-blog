@@ -8,7 +8,7 @@ const blogSchema = new Schema({
   title: String,
   author: String,
   body: String,
-  date: { type: Date, default: Date.now },
+  date: String,
 });
 
 const Post = mongoose.model('Blog', blogSchema);
