@@ -24,7 +24,7 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         options: {
-          presets: ['es2015', 'react', 'airbnb', 'stage-0'],
+          presets: ['react', 'es2015', 'airbnb', 'stage-0'],
         },
       },
       {

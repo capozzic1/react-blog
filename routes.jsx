@@ -10,6 +10,7 @@ export default (
     <Route exact path="/" component={Home} />
     <Route path="/newpost" component={NewPost} />
     <Route path="/single" component={SinglePost} />
+    <Route path="/dashboard" component={SinglePost} />
   </div>
 
 );

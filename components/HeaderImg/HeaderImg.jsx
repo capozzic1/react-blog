@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HeaderImg = (
+const HeaderImg = () => (
   <header>
     <img src="" alt="hero-img" />
   </header>

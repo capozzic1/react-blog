@@ -6,6 +6,8 @@ import SinglePost from './SinglePost';
 
 
 describe('<SinglePost />', () => {
+  let wrapper;
+
   beforeEach(() => {
     wrapper = shallow(<SinglePost />);
   });
