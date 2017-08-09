@@ -1,13 +1,21 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import Layout from '../../components/Layout/Layout';
+import { shallow, mount } from 'enzyme';
+import { expect } from 'chai';
+
 import Dashboard from './Dashboard';
 
+/* work more on this test tomorrow */
 describe('<Dashboard />', () => {
-  it('should have a Layout component', () => {
-    const wrapper = (<Dashboard />);
+  it('should have some jsx elements', () => {
+    const wrapper = shallow(<Dashboard />);
     expect(wrapper.containsAllMatchingElements([
-
-    ]).to.equal(true);
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Date</th>
+        </tr>
+      </table>,
+    ])).to.equal(true);
   });
 });
