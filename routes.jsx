@@ -4,13 +4,14 @@ import Home from './views/Home/Home';
 // import PostList from './views/PostList/PostList';
 import NewPost from './views/NewPost/NewPost';
 import SinglePost from './views/SinglePost/SinglePost';
+import Dashboard from './views/Dashboard/Dashboard';
 
 export default (
   <div>
     <Route exact path="/" component={Home} />
     <Route path="/newpost" component={NewPost} />
     <Route path="/single" component={SinglePost} />
-    <Route path="/dashboard" component={SinglePost} />
+    <Route path="/dashboard" component={Dashboard} />
   </div>
 
 );

@@ -1,36 +1,51 @@
 
+import { connect } from 'react-redux';
 import React from 'react';
-import axios from 'axios';
 import Layout from '../../components/Layout/Layout';
 import PostBtn from '../../components/PostBtn/PostBtn';
 import PostList from '../PostList/PostList';
+import fetchPosts from '../../redux/actions/postActions';
 
-export default class Home extends React.Component {
+
+const mapStateToProps = state => ({
+  postCon: state,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchPosts: () => {
+    dispatch(fetchPosts());
+  },
+});
+
+class Home extends React.Component {
   constructor() {
     super();
     this.state = {
-      posts: [],
+
     };
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/posts')
-      .then((response) => {
-        // console.log(res);
+    this.fetchPosts();
+  }
 
-        this.setState({
-          posts: response.data,
-        });
-      });
+  fetchPosts() {
+    this.props.fetchPosts();
   }
 
 
   render() {
+    // console.log(this.props.postCon.posts.posts);
+    const { posts } = this.props.postCon.posts;
+
+    console.log(posts);
     return (
       <Layout>
         <PostBtn />
-        <PostList posts={this.state.posts} />
+        <PostList posts={posts} />
       </Layout>
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

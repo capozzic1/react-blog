@@ -25,6 +25,7 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           presets: ['react', 'es2015', 'airbnb', 'stage-0'],
+          plugins: ['transform-decorators-legacy'],
         },
       },
       {
