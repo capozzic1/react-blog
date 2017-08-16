@@ -25,6 +25,7 @@ class Dashboard extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.confirmDelete = this.confirmDelete.bind(this);
   }
   componentDidMount() {
     this.fetchPosts();
@@ -54,12 +55,13 @@ class Dashboard extends React.Component {
       console.log(this.state);
     }
   }
+  confirmDelete() {
+    const confirmDel = confirm('Are you sure you want to delete these posts?');
 
+    confirmDel ? this.handleDelete() : false;
+  }
   handleDelete() {
     this.props.deletePosts([...this.state.posts]);
-    this.setState({
-      posts: [],
-    });
   }
 
   render() {
@@ -78,7 +80,7 @@ class Dashboard extends React.Component {
     return (
       <Layout>
         <button className="edit">Edit</button>
-        <button className="delete" onClick={this.handleDelete}>Delete</button>
+        <button className="delete" onClick={this.confirmDelete}>Delete</button>
         <table>
           <tr>
             <th><input type="checkbox" /></th>

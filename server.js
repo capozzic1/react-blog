@@ -42,7 +42,17 @@ app.get('/posts', (req, res) => {
 });
 
 app.delete('/delete', (req, res) => {
-  console.log(req.body);
+  const posts = req.body;
+
+  Post.remove({ _id: { $in: posts } }, (err) => {
+    if (err) return console.log(err);
+  }).then(() => {
+    Post.find((err, posts) => {
+      if (err) return console.err(err);
+
+      res.send(posts);
+    });
+  });
 });
 
 

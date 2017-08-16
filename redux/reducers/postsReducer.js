@@ -22,6 +22,7 @@ export default function reducer(state = {
       return {
         ...state,
         deleted: true,
+        posts: action.payload,
       };
     }
   }

@@ -12,8 +12,9 @@ export const fetchPosts = () => function (dispatch) {
     });
 };
 
-export const deletePosts = posts => function (dispatch) {
+export const deletePosts = (posts, cb) => function (dispatch) {
   axios.delete('http://localhost:4000/delete', { data: posts })
+
     .then((response) => {
       dispatch({ type: 'DELETE_POSTS_FUFILLED', payload: response.data });
     });
