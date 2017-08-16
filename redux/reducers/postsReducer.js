@@ -7,9 +7,6 @@ export default function reducer(state = {
   error: null,
 }, action) {
   switch (action.type) {
-    case 'FETCH_POSTS': {
-      return { ...state, fetching: true };
-    }
     case 'FETCH_POSTS_FUFILLED': {
       return {
         ...state,
@@ -20,6 +17,12 @@ export default function reducer(state = {
     }
     case 'FETCH_POSTS_REJECTED': {
       return { ...state, fetching: false, error: action.payload };
+    }
+    case 'DELETE_POSTS_FUFILLED': {
+      return {
+        ...state,
+        deleted: true,
+      };
     }
   }
 

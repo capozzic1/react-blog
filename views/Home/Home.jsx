@@ -4,7 +4,7 @@ import React from 'react';
 import Layout from '../../components/Layout/Layout';
 import PostBtn from '../../components/PostBtn/PostBtn';
 import PostList from '../PostList/PostList';
-import fetchPosts from '../../redux/actions/postActions';
+import { fetchPosts } from '../../redux/actions/postActions';
 
 
 const mapStateToProps = state => ({

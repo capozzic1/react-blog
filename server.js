@@ -41,6 +41,11 @@ app.get('/posts', (req, res) => {
   });
 });
 
+app.delete('/delete', (req, res) => {
+  console.log(req.body);
+});
+
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
