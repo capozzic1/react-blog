@@ -5,6 +5,7 @@ import { fetchPosts, deletePosts } from '../../redux/actions/postActions';
 
 const mapStateToProps = state => ({
   postCon: state,
+  checkAll: false,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -26,10 +27,13 @@ class Dashboard extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.confirmDelete = this.confirmDelete.bind(this);
+
+    this.deleteAll = this.deleteAll.bind(this);
   }
   componentDidMount() {
     this.fetchPosts();
   }
+
 
   fetchPosts() {
     this.props.fetchPosts();
@@ -63,11 +67,30 @@ class Dashboard extends React.Component {
   handleDelete() {
     this.props.deletePosts([...this.state.posts]);
   }
+  deleteAll() {
+  //  this.props.deletePosts([...this.props.postCon.posts]);
+    console.log(this.props.postCon.posts.posts);
+    const posts = this.props.postCon.posts.posts;
+    const postsDelete = [];
+
+    posts.forEach((val, i) => {
+      postsDelete.push(val._id);
+    });
+
+    this.setState({
+      posts: postsDelete,
+    }, () => {
+      this.confirmDelete();
+    });
+
+
+    console.log(postsDelete);
+  }
 
   render() {
     // console.log(this.state.posts);
     const { posts } = this.props.postCon.posts;
-
+    // console.log(posts);
     const rows = posts.map(post =>
       (<tr key={post._id}>
         <td><input type="checkbox" onClick={this.handleChange} className={post._id} /></td>
@@ -81,9 +104,10 @@ class Dashboard extends React.Component {
       <Layout>
         <button className="edit">Edit</button>
         <button className="delete" onClick={this.confirmDelete}>Delete</button>
+        <button className="deleteAll" onClick={this.deleteAll}>Delete all posts</button>
         <table>
           <tr>
-            <th><input type="checkbox" /></th>
+
             <th>Title</th>
             <th>Author</th>
             <th>Date</th>
