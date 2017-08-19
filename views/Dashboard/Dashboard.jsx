@@ -2,10 +2,18 @@ import { connect } from 'react-redux';
 import React from 'react';
 import Layout from '../../components/Layout/Layout';
 import { fetchPosts, deletePosts } from '../../redux/actions/postActions';
+import createHistory from 'history/createBrowserHistory';
+
+const history = createHistory();
+
+const location = history.location;
+
+const listen = history.listen((location, action) => {
+  console.log(action, location.pathname, location.state);
+});
 
 const mapStateToProps = state => ({
   postCon: state,
-  checkAll: false,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -22,11 +30,13 @@ class Dashboard extends React.Component {
     super();
 
     this.state = {
-      posts: [],
+      postsToDelete: [],
+
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.confirmDelete = this.confirmDelete.bind(this);
+
 
     this.deleteAll = this.deleteAll.bind(this);
   }
@@ -41,19 +51,18 @@ class Dashboard extends React.Component {
 
   handleChange(e) {
     const postHolder = [];
-    let postId;
-    postId = e.target.className;
+    const postId = e.target.className;
 
     if (e.target.checked) {
       this.setState({
-        posts: [...this.state.posts, postId],
+        postsToDelete: [...this.state.postsToDelete, postId],
       }, () => {
         console.log(this.state);
       });
     } else {
-      const index = this.state.posts.indexOf(postId);
+      const index = this.state.postsToDelete.indexOf(postId);
       this.setState(prevState => ({
-        posts: prevState.posts.filter((_, i) => i !== index),
+        postsToDelete: prevState.postsToDelete.filter((_, i) => i !== index),
       }));
 
       console.log(this.state);
@@ -65,7 +74,7 @@ class Dashboard extends React.Component {
     confirmDel ? this.handleDelete() : false;
   }
   handleDelete() {
-    this.props.deletePosts([...this.state.posts]);
+    this.props.deletePosts([...this.state.postsToDelete]);
   }
   deleteAll() {
   //  this.props.deletePosts([...this.props.postCon.posts]);
@@ -78,7 +87,7 @@ class Dashboard extends React.Component {
     });
 
     this.setState({
-      posts: postsDelete,
+      postsToDelete: postsDelete,
     }, () => {
       this.confirmDelete();
     });
@@ -94,12 +103,12 @@ class Dashboard extends React.Component {
     const rows = posts.map(post =>
       (<tr key={post._id}>
         <td><input type="checkbox" onClick={this.handleChange} className={post._id} /></td>
-        <td>{post.title}</td>
+        <td><a href="" onClick={this.handleClick} className={post._id}>{post.title}</a></td>
         <td>{post.author}</td>
         <td>{post.date}</td>
       </tr>));
 
-    // console.log(posts);
+
     return (
       <Layout>
         <button className="edit">Edit</button>

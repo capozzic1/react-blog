@@ -19,3 +19,12 @@ export const deletePosts = (posts, cb) => function (dispatch) {
       dispatch({ type: 'DELETE_POSTS_FUFILLED', payload: response.data });
     });
 };
+
+export const findSinglePost = (postId) => function (dispatch) {
+
+  dispatch({ type: 'FIND_SINGLE_POST', payload: postId});
+}
+
+export const pageFound = () => function (dispatch) {
+  dispatch({ type: 'PAGE_REDIRECTED' });
+}

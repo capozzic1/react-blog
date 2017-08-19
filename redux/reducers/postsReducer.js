@@ -5,6 +5,8 @@ export default function reducer(state = {
   fetching: false,
   fetched: false,
   error: null,
+  currentPostInfo: [],
+  redirect: false,
 }, action) {
   switch (action.type) {
     case 'FETCH_POSTS_FUFILLED': {
@@ -24,6 +26,25 @@ export default function reducer(state = {
         deleted: true,
         posts: action.payload,
       };
+    }
+/* eslint-disable indent, linebreak-style */
+    case 'FIND_SINGLE_POST': {
+        const posts = state.posts;
+        const len = state.posts.length;
+        let postId = action.payload;
+        for (let i = 0; i < len; i++){
+          if (posts[i]._id === postId){
+            return {
+              ...state,
+              currentPostInfo:posts[i],
+              redirect: true
+            }
+          }
+        }
+    }
+
+    case 'PAGE_REDIRECTED': {
+      return {...state, redirect: false}
     }
   }
 

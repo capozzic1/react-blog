@@ -1,11 +1,15 @@
 
+
 import React from 'react';
 import Layout from '../../components/Layout/Layout';
 
-const SinglePost = (props) => {
-  console.log(props.location.state.postInfo);
-  const post = props.location.state.postInfo;
 
+
+const SinglePost = (props) => {
+
+  const post = props.location.state.info;
+
+  //debugger;
   return (
     <Layout>
       <h2 className="post-title">{post.title}</h2>
@@ -16,4 +20,4 @@ const SinglePost = (props) => {
   );
 };
 
-export default SinglePost;
+export default SinglePost
