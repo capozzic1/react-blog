@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import Layout from '../../components/Layout/Layout';
-import { fetchPosts, deletePosts } from '../../redux/actions/postActions';
+import { fetchPosts, deletePosts, findSinglePost, sendEdit } from '../../redux/actions/postActions';
 import createHistory from 'history/createBrowserHistory';
+import EditModal from '../../components/EditModal/Editmodal';
 
 const history = createHistory();
 
@@ -14,6 +15,9 @@ const listen = history.listen((location, action) => {
 
 const mapStateToProps = state => ({
   postCon: state,
+  redirect: state.posts.redirect,
+  currPost: state.posts.currentPostInfo,
+  edit: state.posts.edit,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -23,6 +27,12 @@ const mapDispatchToProps = dispatch => ({
   deletePosts: (posts) => {
     dispatch(deletePosts(posts));
   },
+  findSinglePost: (postId) => {
+    dispatch(findSinglePost(postId));
+  },
+  sendEdit: (stat) => {
+    dispatch(sendEdit(stat));
+  },
 });
 
 class Dashboard extends React.Component {
@@ -30,18 +40,26 @@ class Dashboard extends React.Component {
     super();
 
     this.state = {
+      // also handles posts to edit
       postsToDelete: [],
 
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.confirmDelete = this.confirmDelete.bind(this);
-
-
+    this.handleClick = this.handleClick.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
     this.deleteAll = this.deleteAll.bind(this);
   }
   componentDidMount() {
     this.fetchPosts();
+  }
+
+  handleClick(e) {
+    // get the post id that was clicked on
+    e.preventDefault();
+    const postId = e.target.className;
+    this.props.findSinglePost(postId);
   }
 
 
@@ -50,35 +68,43 @@ class Dashboard extends React.Component {
   }
 
   handleChange(e) {
-    const postHolder = [];
     const postId = e.target.className;
 
     if (e.target.checked) {
       this.setState({
         postsToDelete: [...this.state.postsToDelete, postId],
       }, () => {
-        console.log(this.state);
       });
     } else {
       const index = this.state.postsToDelete.indexOf(postId);
       this.setState(prevState => ({
         postsToDelete: prevState.postsToDelete.filter((_, i) => i !== index),
       }));
-
-      console.log(this.state);
     }
   }
+  handleEdit() {
+    const len = this.state.postsToDelete.length;
+    if (len > 1 || len === 0) {
+      alert('Please check one post to edit');
+    }
+
+    this.props.sendEdit(true);
+
+
+    console.log(this.state.postsToDelete.length);
+  }
+
   confirmDelete() {
     const confirmDel = confirm('Are you sure you want to delete these posts?');
 
     confirmDel ? this.handleDelete() : false;
   }
+
   handleDelete() {
     this.props.deletePosts([...this.state.postsToDelete]);
   }
+
   deleteAll() {
-  //  this.props.deletePosts([...this.props.postCon.posts]);
-    console.log(this.props.postCon.posts.posts);
     const posts = this.props.postCon.posts.posts;
     const postsDelete = [];
 
@@ -91,13 +117,9 @@ class Dashboard extends React.Component {
     }, () => {
       this.confirmDelete();
     });
-
-
-    console.log(postsDelete);
   }
 
   render() {
-    // console.log(this.state.posts);
     const { posts } = this.props.postCon.posts;
     // console.log(posts);
     const rows = posts.map(post =>
@@ -108,10 +130,15 @@ class Dashboard extends React.Component {
         <td>{post.date}</td>
       </tr>));
 
+    if (this.props.redirect === true) {
+      history.push('/single', { info: this.props.currPost });
+      history.go('/single');
+    }
+
 
     return (
       <Layout>
-        <button className="edit">Edit</button>
+        <button className="edit" onClick={this.handleEdit}>Edit</button>
         <button className="delete" onClick={this.confirmDelete}>Delete</button>
         <button className="deleteAll" onClick={this.deleteAll}>Delete all posts</button>
         <table>
@@ -124,6 +151,10 @@ class Dashboard extends React.Component {
           </tr>
           {rows}
         </table>
+
+        {
+          this.props.edit === true && <EditModal />
+        }
       </Layout>
     );
   }

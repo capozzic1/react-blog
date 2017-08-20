@@ -7,6 +7,7 @@ export default function reducer(state = {
   error: null,
   currentPostInfo: [],
   redirect: false,
+  edit: false,
 }, action) {
   switch (action.type) {
     case 'FETCH_POSTS_FUFILLED': {
@@ -31,20 +32,19 @@ export default function reducer(state = {
     case 'FIND_SINGLE_POST': {
         const posts = state.posts;
         const len = state.posts.length;
-        let postId = action.payload;
-        for (let i = 0; i < len; i++){
-          if (posts[i]._id === postId){
+        const postId = action.payload;
+        for (let i = 0; i < len; i++) {
+          if (posts[i]._id === postId) {
             return {
               ...state,
-              currentPostInfo:posts[i],
-              redirect: true
-            }
+              currentPostInfo: posts[i],
+              redirect: true,
+            };
           }
         }
     }
-
-    case 'PAGE_REDIRECTED': {
-      return {...state, redirect: false}
+    case 'CHANGE_EDIT_STATUS': {
+      return { ...state, edit: action.payload };
     }
   }
 

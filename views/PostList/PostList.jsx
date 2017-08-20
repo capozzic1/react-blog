@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { findSinglePost } from '../../redux/actions/postActions';
 import createHistory from 'history/createBrowserHistory';
 
-let history = createHistory();
+const history = createHistory();
 
 const mapStateToProps = state => ({
   redirect: state.posts.redirect,
@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   findSinglePost: (postId) => {
     dispatch(findSinglePost(postId));
-  }
+  },
 });
 
 export class PostList extends React.Component {
@@ -32,31 +32,29 @@ export class PostList extends React.Component {
     e.preventDefault();
     const postId = e.target.className;
     this.props.findSinglePost(postId);
-
   }
 
 
   render() {
-
     let postDivs;
     let posts;
     posts = this.props.posts;
-    console.log(this.props.redirect)
+    console.log(this.props.redirect);
 
 
-  postDivs = posts.map(post => (
-    <div className="post-item" key={post._id}>
-      <a href="" onClick={this.handleClick}><h2 className={post._id}>{post.title}</h2></a>
-      <h3 className="post-date">{post.date}</h3>
-      <h3 className="author">{post.author}</h3>
-      <p className="body">{post.body}</p>
-    </div>
-      ));
+    postDivs = posts.map(post => (
+      <div className="post-item" key={post._id}>
+        <a href="" onClick={this.handleClick}><h2 className={post._id}>{post.title}</h2></a>
+        <h3 className="post-date">{post.date}</h3>
+        <h3 className="author">{post.author}</h3>
+        <p className="body">{post.body}</p>
+      </div>
+    ));
 
-  if (this.props.redirect === true){
-    history.push('/single', { info: this.props.currPost });
-    history.go('/single');
-  }
+    if (this.props.redirect === true) {
+      history.push('/single', { info: this.props.currPost });
+      history.go('/single');
+    }
 
     return (
 

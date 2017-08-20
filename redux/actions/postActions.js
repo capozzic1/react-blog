@@ -20,11 +20,10 @@ export const deletePosts = (posts, cb) => function (dispatch) {
     });
 };
 
-export const findSinglePost = (postId) => function (dispatch) {
+export const findSinglePost = postId => function (dispatch) {
+  dispatch({ type: 'FIND_SINGLE_POST', payload: postId });
+};
 
-  dispatch({ type: 'FIND_SINGLE_POST', payload: postId});
-}
-
-export const pageFound = () => function (dispatch) {
-  dispatch({ type: 'PAGE_REDIRECTED' });
-}
+export const sendEdit = editStatus => function (dispatch) {
+  dispatch({ type: 'CHANGE_EDIT_STATUS', payload: editStatus });
+};
