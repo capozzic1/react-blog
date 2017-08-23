@@ -14,11 +14,6 @@ import EditModal from '../../components/EditModal/EditModal';
 
 const history = createHistory();
 
-const location = history.location;
-
-const listen = history.listen((location, action) => {
-  console.log(action, location.pathname, location.state);
-});
 
 const mapStateToProps = state => ({
   posts: state.posts.posts,
@@ -26,6 +21,7 @@ const mapStateToProps = state => ({
   currPost: state.posts.currentPostInfo,
   edit: state.posts.edit,
   editPostId: state.posts.editPostId,
+  checked: state.posts.boxChecked,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -96,34 +92,30 @@ class Dashboard extends React.Component {
 
   handleEdit() {
     // send edit to get the edit modal displayed
-    this.props.findSinglePost(this.props.editPostId);
-    this.props.sendEdit(true);
+    if (!this.props.checked) {
+      alert('Please check a box to edit a post.');
+    } else {
+      this.props.findSinglePost(this.props.editPostId);
+      this.props.sendEdit(true);
+    }
   }
 
-  confirmDelete() {
+  confirmDelete(count) {
     const confirmDel = confirm('Are you sure you want to delete these posts?');
-
-    confirmDel ? this.handleDelete() : false;
+    if (confirmDel === true && count == 'all') {
+      this.handleDelete([...this.props.posts]);
+    } else if (confirmDel) {
+      this.handleDelete([this.props.editPostId]);
+    }
   }
 
-  handleDelete() {
-    this.props.deletePosts([this.props.editPostId]);
+  handleDelete(posts) {
+    this.props.deletePosts([...posts]);
   }
 
 
   deleteAll() {
-    const posts = this.props.posts;
-    const postsDelete = [];
-
-    posts.forEach((val, i) => {
-      postsDelete.push(val._id);
-    });
-
-    this.setState({
-      postsToDelete: postsDelete,
-    }, () => {
-      this.confirmDelete();
-    });
+    this.confirmDelete('all');
   }
 
   render() {
@@ -162,14 +154,17 @@ class Dashboard extends React.Component {
               <button className="delete" onClick={this.confirmDelete}>Delete</button>
               <button className="deleteAll" onClick={this.deleteAll}>Delete all posts</button>
               <table>
-                <tr>
+                <tbody>
+                  <tr>
 
-                  <th>Title</th>
-                  <th>Author</th>
-                  <th>Date</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Date</th>
 
-                </tr>
-                {rows}
+                  </tr>
+
+                  {rows}
+                </tbody>
               </table>
             </div>
           )

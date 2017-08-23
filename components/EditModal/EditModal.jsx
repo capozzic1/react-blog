@@ -4,9 +4,12 @@ import { Field, reduxForm, formValueSelector, getFormValues } from 'redux-form';
 import { connect } from 'react-redux';
 import { load as loadData } from '../../redux/actions/postActions';
 import reducer from '../../redux/reducers/postsReducer';
+import createHistory from 'history/createBrowserHistory';
+
+const history = createHistory();
 
 const mapStateToProps = state =>
-  // ...some irrelevant logic
+
   ({
     formValues: getFormValues('editForm')(state),
   });
@@ -18,11 +21,11 @@ class EditModal extends React.Component {
 
   handleSave() {
     const { title, body } = this.props.formValues;
-
-    // this.props.handleSave();
     const newObj = { ...this.props.currPost, title, body };
 
     this.props.handleSave([newObj]);
+
+    history.go('/dashboard');
   }
 
 
@@ -50,7 +53,7 @@ class EditModal extends React.Component {
 
             />
           </div>
-          <button type="submit" onSubmit={this.props.handleSubmit(this.handleSave.bind(this))}>Save</button>
+          <button type="button" onClick={this.handleSave.bind(this)}>Save</button>
           <button type="button" onClick={this.handleCancel.bind(this)}>Cancel</button>
         </form>
       </section>

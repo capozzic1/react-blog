@@ -10,6 +10,8 @@ export default function reducer(state = {
   redirect: false,
   edit: false,
   initialVals: '',
+  boxChecked: false,
+  deleteAll: false,
 }, action) {
   switch (action.type) {
     case 'FETCH_POSTS_FUFILLED': {
@@ -64,11 +66,13 @@ export default function reducer(state = {
         return {
           ...state,
         editPostId: action.payload,
+        boxChecked: true,
         };
       }
         return {
           ...state,
           editPostId: null,
+          boxChecked: false,
         };
     }
 
