@@ -1,65 +1,57 @@
-import { connect } from 'react-redux';
-import { sendEdit } from '../../redux/actions/postActions';
+
 import React from 'react';
-import Layout from '../Layout/Layout';
+import { Field, reduxForm, formValueSelector, getFormValues } from 'redux-form';
+import { connect } from 'react-redux';
+import { load as loadData } from '../../redux/actions/postActions';
+import reducer from '../../redux/reducers/postsReducer';
 
-
-const mapDispatchToProps = dispatch => ({
-  sendEdit: (stat) => {
-    dispatch(sendEdit(stat));
-  },
-});
+const mapStateToProps = state =>
+  // ...some irrelevant logic
+  ({
+    formValues: getFormValues('editForm')(state),
+  });
 
 class EditModal extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      title: '',
-      body: '',
-    };
-
-    this.handleInput = this.handleInput.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
-  }
-
-  handleInput(event) {
-    const name = event.target.name;
-    if (name === 'title') {
-      this.setState({ title: event.target.value });
-    }
-    this.setState({ body: event.target.value });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-  }
-
-
-  handleCancel(e) {
-    e.preventDefault();
+  handleCancel() {
     this.props.sendEdit(false);
   }
 
+  handleSave() {
+    const { title, body } = this.props.formValues;
+
+    // this.props.handleSave();
+    const newObj = { ...this.props.currPost, title, body };
+
+    this.props.handleSave([newObj]);
+  }
+
+
   render() {
+    const { handleSubmit } = this.props;
     return (
 
       <section className="form-wrapper" id="edit-form">
         <h2>Edit Post</h2>
-        <form>
-          <label htmlFor="post-title">Post title</label><br />
-          <input
+        <form >
+
+          <Field
             name="title"
+            component="input"
             type="text"
             placeholder="Post title"
-            onChange={this.handleInput}
+
           />
           <div className="text-wrapper">
-            <textarea name="body" className="text-area" onChange={this.handleInput} />
+
+            <Field
+              name="body"
+              component="textarea"
+              className="text-area"
+
+            />
           </div>
-          <button onSubmit={this.handleSubmit}>Edit</button>
-          <button onSubmit={this.handleCancel}>Cancel</button>
+          <button type="submit" onSubmit={this.props.handleSubmit(this.handleSave.bind(this))}>Save</button>
+          <button type="button" onClick={this.handleCancel.bind(this)}>Cancel</button>
         </form>
       </section>
 
@@ -67,4 +59,26 @@ class EditModal extends React.Component {
   }
 }
 
-export default connect(mapDispatchToProps)(EditModal);
+EditModal = reduxForm({
+  form: 'editForm',
+})(EditModal);
+
+
+EditModal = connect(
+  state => ({
+    initialValues: state.posts.currentPostInfo,
+  }),
+
+  { reducer },
+)(EditModal);
+
+const selector = formValueSelector('editForm');
+
+EditModal = connect(
+  state => ({
+    formValues: getFormValues('editForm')(state),
+  }),
+)(EditModal);
+
+
+export default EditModal;

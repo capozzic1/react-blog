@@ -20,7 +20,7 @@ app.post('/newpost', (req, res) => {
   const newPost = new Post({ title: postInfo.title,
     author: postInfo.author,
     body: postInfo.body,
-    date: postInfo.date });
+  });
   // console.log(newPost);
 
   newPost.save((err, fluffy) => {
@@ -53,6 +53,18 @@ app.delete('/delete', (req, res) => {
       res.send(posts);
     });
   });
+});
+
+app.put('/edit', (req, res) => {
+  // console.log(req.body);
+  const post = req.body.data[0];
+
+  Post.findByIdAndUpdate(post._id, { title: post.title, body: post.body },
+    { new: true }, (err, post) => {
+      if (err) return console.log(err);
+      console.log(post);
+      // res.send(post);
+    });
 });
 
 

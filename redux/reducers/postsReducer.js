@@ -6,8 +6,10 @@ export default function reducer(state = {
   fetched: false,
   error: null,
   currentPostInfo: [],
+  editPostId: null,
   redirect: false,
   edit: false,
+  initialVals: '',
 }, action) {
   switch (action.type) {
     case 'FETCH_POSTS_FUFILLED': {
@@ -38,15 +40,42 @@ export default function reducer(state = {
             return {
               ...state,
               currentPostInfo: posts[i],
-              redirect: true,
+
             };
           }
         }
     }
+    case 'CHANGE_REDIRECT_STATUS': {
+      return { ...state, redirect: true };
+    }
+
     case 'CHANGE_EDIT_STATUS': {
       return { ...state, edit: action.payload };
     }
-  }
 
-  return state;
+    case 'EDITED_POST': {
+      return {
+        ...state,
+        posts: action.payload,
+      };
+    }
+    case 'CURRENT_POST': {
+      if (action.payload) {
+        return {
+          ...state,
+        editPostId: action.payload,
+        };
+      }
+        return {
+          ...state,
+          editPostId: null,
+        };
+    }
+
+    case 'LOAD': {
+      return { ...state,
+            data: action.payload };
+    }
+  }
+    return state;
 }

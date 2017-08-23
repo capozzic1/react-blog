@@ -27,3 +27,21 @@ export const findSinglePost = postId => function (dispatch) {
 export const sendEdit = editStatus => function (dispatch) {
   dispatch({ type: 'CHANGE_EDIT_STATUS', payload: editStatus });
 };
+
+export const handleSave = changes => function (dispatch) {
+  axios.put('http://localhost:4000/edit', { data: changes })
+
+    .then((response) => {
+      dispatch({ type: 'EDITED_POST', payload: response.data });
+    });
+};
+
+export const load = data => ({ type: 'LOAD', payload: data });
+
+export const changeRedirect = () => function (dispatch) {
+  dispatch({ type: 'CHANGE_REDIRECT_STATUS' });
+};
+
+export const checkBoxChange = postId => function (dispatch) {
+  dispatch({ type: 'CURRENT_POST', payload: postId });
+};
