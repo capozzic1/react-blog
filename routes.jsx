@@ -5,6 +5,7 @@ import Home from './views/Home/Home';
 import NewPost from './views/NewPost/NewPost';
 import SinglePost from './views/SinglePost/SinglePost';
 import Dashboard from './views/Dashboard/Dashboard';
+import LoginPage from './views/LoginPage/LoginPage';
 
 export default (
   <div>
@@ -12,6 +13,7 @@ export default (
     <Route path="/newpost" component={NewPost} />
     <Route path="/single" component={SinglePost} />
     <Route path="/dashboard" component={Dashboard} />
+    <Route path="/login" component={LoginPage} />
   </div>
 
 );

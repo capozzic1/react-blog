@@ -11,7 +11,6 @@ export default function reducer(state = {
   edit: false,
   initialVals: '',
   boxChecked: false,
-  deleteAll: false,
 }, action) {
   switch (action.type) {
     case 'FETCH_POSTS_FUFILLED': {

@@ -10,6 +10,7 @@ import { fetchPosts, deletePosts,
   handleSave } from '../../redux/actions/postActions';
 import createHistory from 'history/createBrowserHistory';
 import EditModal from '../../components/EditModal/EditModal';
+import PostBtn from '../../components/PostBtn/PostBtn';
 
 
 const history = createHistory();
@@ -153,6 +154,7 @@ class Dashboard extends React.Component {
               <button className="edit" onClick={this.handleEdit}>Edit</button>
               <button className="delete" onClick={this.confirmDelete}>Delete</button>
               <button className="deleteAll" onClick={this.deleteAll}>Delete all posts</button>
+              <PostBtn />
               <table>
                 <tbody>
                   <tr>
