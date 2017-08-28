@@ -3,8 +3,9 @@ const webpack = require('webpack');
 
 // env
 const buildDirectory = 'public';
+const serverDirectory = 'server';
 
-module.exports = {
+const clientConfig = {
   entry: './index.jsx',
   output: {
     path: path.resolve(buildDirectory),
@@ -51,3 +52,25 @@ module.exports = {
     },
   },
 };
+
+const serverConfig = {
+
+  target: 'node',
+  entry: './server.js',
+  output: {
+    path: path.resolve(serverDirectory),
+    filename: 'server.bundle.js',
+  },
+
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
+    ],
+  },
+};
+
+module.exports = [clientConfig, serverConfig];

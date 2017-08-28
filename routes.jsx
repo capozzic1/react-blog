@@ -6,6 +6,7 @@ import NewPost from './views/NewPost/NewPost';
 import SinglePost from './views/SinglePost/SinglePost';
 import Dashboard from './views/Dashboard/Dashboard';
 import LoginPage from './views/LoginPage/LoginPage';
+import SignUp from './views/SignUp/SignUp';
 
 export default (
   <div>
@@ -14,6 +15,7 @@ export default (
     <Route path="/single" component={SinglePost} />
     <Route path="/dashboard" component={Dashboard} />
     <Route path="/login" component={LoginPage} />
+    <Route path="/signup" component={SignUp} />
   </div>
 
 );

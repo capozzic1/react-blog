@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
-
+import renderField from '../FormHelpers/RenderField';
 import createHistory from 'history/createBrowserHistory';
 
 const history = createHistory();
@@ -18,24 +18,6 @@ const validate = (values) => {
   return errors;
 };
 
-const renderField = ({
-  input,
-  label,
-  type,
-  meta: { touched, error },
-}) => (<div>
-  <label>
-    {label}
-  </label>
-  <div>
-    <input {...input} placeholder={label} type={type} />
-    {touched &&
-      ((error &&
-        <span>
-          {error}
-        </span>))}
-  </div>
-</div>);
 /* eslint-disable */
 class LoginForm extends React.Component {
   constructor(props){
@@ -97,12 +79,5 @@ LoginForm = reduxForm({
 
 const selector = formValueSelector('loginForm');
 
-LoginForm = connect(
-  state => {
-  const { username, password } = selector(state, 'username', 'password');
-  return {
-  username,
-  password
-  }
-})(LoginForm)
+
 export default LoginForm;
