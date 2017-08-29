@@ -8,7 +8,7 @@
     "server": "nodemon server.js",
     "webpack": "webpack --progress --colors --w",
     "dev-client": "webpack-dev-server --hot --watch ./",
-    "dev-server": "nodemon server.js",
+    "dev-server": "nodemon server/server.js",
     "start": "concurrently \"npm run dev-client\" \"npm run dev-server\""
   },
   "repository": {

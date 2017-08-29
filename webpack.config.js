@@ -6,7 +6,7 @@ const buildDirectory = 'public';
 const serverDirectory = 'server';
 
 const clientConfig = {
-  entry: './index.jsx',
+  entry: 'index.jsx',
   output: {
     path: path.resolve(buildDirectory),
     filename: 'app.js',
@@ -53,24 +53,5 @@ const clientConfig = {
   },
 };
 
-const serverConfig = {
 
-  target: 'node',
-  entry: './server.js',
-  output: {
-    path: path.resolve(serverDirectory),
-    filename: 'server.bundle.js',
-  },
-
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'babel-loader',
-      },
-    ],
-  },
-};
-
-module.exports = [clientConfig, serverConfig];
+module.exports = clientConfig;
