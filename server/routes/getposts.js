@@ -1,5 +1,5 @@
-import express from 'express';
-import Post from '../models/models';
+const express = require('express');
+const Post = require('../models/models');
 
 const router = express.Router();
 
@@ -10,4 +10,4 @@ router.get('/', (req, res) => {
   });
 });
 
-export default router;
+module.exports = router;;

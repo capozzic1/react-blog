@@ -1,7 +1,7 @@
-import express from 'express';
-import Post from '../models/models';
+const express = require('express');
+const Post = require('../models/models');
 
-const router = express.Router;
+const router = express.Router();
 
 router.post('/', (req, res) => {
   // console.log(typeof req.body);
@@ -23,4 +23,4 @@ router.post('/', (req, res) => {
   */
 });
 
-export default router;
+module.exports = router;

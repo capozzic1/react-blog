@@ -3,10 +3,10 @@ const webpack = require('webpack');
 
 // env
 const buildDirectory = 'public';
-const serverDirectory = 'server';
+
 
 const clientConfig = {
-  entry: 'index.jsx',
+  entry: './client/index.jsx',
   output: {
     path: path.resolve(buildDirectory),
     filename: 'app.js',

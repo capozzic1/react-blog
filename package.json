@@ -5,9 +5,7 @@
   "main": "./index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --compilers jsx:babel-register test/helpers/setup.js  */*/*.spec.jsx -w",
-    "server": "nodemon server.js",
-    "webpack": "webpack --progress --colors --w",
-    "dev-client": "webpack-dev-server --hot --watch ./",
+    "dev-client": "webpack-dev-server --hot --watch",
     "dev-server": "nodemon server/server.js",
     "start": "concurrently \"npm run dev-client\" \"npm run dev-server\""
   },
@@ -50,13 +48,7 @@
     "phantomjs-prebuilt": "^2.1.4",
     "react-addons-test-utils": "^15.6.0",
     "react-test-renderer": "^15.6.1",
-    "redux-devtools": "^3.4.0",
-    "sinon": "^2.4.1",
-    "watchify": "^3.7.0",
-    "grunt": "~0.4.5",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-nodeunit": "~0.4.1",
-    "grunt-contrib-uglify": "~0.5.0"
+    "redux-devtools": "^3.4.0"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -79,7 +71,7 @@
     "redux-promise-middleware": "^4.2.1",
     "redux-thunk": "^2.2.0",
     "webpack": "^3.3.0",
-    "webpack-dev-server": "^2.6.1"
+    "webpack-dev-server": "^2.7.1"
   },
   "engines": {
     "node": ">=6.2.2"

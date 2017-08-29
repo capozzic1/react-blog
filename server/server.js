@@ -1,16 +1,16 @@
 
-import users from './routes/users';
-import newpost from './routes/newpost';
-import getposts from './routes/getposts';
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import Post from './models/models';
-import deleteposts from './routes/delete';
-import editposts from './routes/editposts';
+const users = require('./routes/users');
+const newpost = require('./routes/newpost');
+const getposts = require('./routes/getposts');
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const Post = require('./models/models');
+const deleteposts = require('./routes/delete');
+const editposts = require('./routes/editposts');
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = 4000;
 
 
 app.use(cors());
