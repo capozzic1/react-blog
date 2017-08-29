@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --compilers jsx:babel-register test/helpers/setup.js  */*/*.spec.jsx -w",
     "dev-client": "webpack-dev-server --hot --watch",
-    "dev-server": "nodemon server/server.js",
+    "dev-server": "node server/server.js",
     "start": "concurrently \"npm run dev-client\" \"npm run dev-server\""
   },
   "repository": {
@@ -42,6 +42,7 @@
     "cors": "^2.8.4",
     "express": "^4.15.3",
     "history": "^4.6.3",
+    "lodash": "^4.17.4",
     "mongoose": "^4.11.4",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -52,6 +53,7 @@
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^4.2.1",
     "redux-thunk": "^2.2.0",
+    "validator": "^8.1.0",
     "webpack": "^3.3.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-dev-server": "^2.7.1",

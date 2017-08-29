@@ -6,7 +6,7 @@ const buildDirectory = 'public';
 
 
 const clientConfig = {
-  entry: ['webpack-hot-middleware/client', './client/index.jsx'],
+  entry: ['webpack-hot-middleware/client?reload=true', './client/index.jsx'],
   output: {
     path: path.resolve(buildDirectory),
     publicPath: '/',
@@ -27,7 +27,6 @@ const clientConfig = {
         loader: 'babel-loader',
         options: {
           presets: ['react', 'es2015', 'airbnb', 'stage-0'],
-          plugins: ['transform-decorators-legacy'],
         },
       },
       {
@@ -42,11 +41,10 @@ const clientConfig = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-  }
-  
   },
-  plugins: [
 
+
+  plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
   ],

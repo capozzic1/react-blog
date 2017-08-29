@@ -18,7 +18,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const compiler = webpack(webpackConfig);
 
-app.use(require('webpack-dev-middleware')(compiler, {
+app.use(webpackMiddleware(compiler, {
   noInfo: true, publicPath: webpackConfig.output.publicPath,
 }));
 
