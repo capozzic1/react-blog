@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+app.use('/api/users', users);
 app.use('/newpost', newpost);
 app.use('/posts', getposts);
 app.use('/delete', deleteposts);
