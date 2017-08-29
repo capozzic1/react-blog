@@ -10,11 +10,15 @@ router.post('/', (req, res) => {
     author: postInfo.author,
     body: postInfo.body,
   });
+
+
   // console.log(newPost);
 
   newPost.save((err, fluffy) => {
     if (err) return console.error(err);
   });
+
+
   /*
   title: String,
   author: String,

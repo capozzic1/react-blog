@@ -8,8 +8,27 @@ const cors = require('cors');
 const Post = require('./models/models');
 const deleteposts = require('./routes/delete');
 const editposts = require('./routes/editposts');
+const path = require('path');
 
 const app = express();
+const webpack = require('webpack');
+const webpackConfig = require('../webpack.config');
+const webpackMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+
+const compiler = webpack(webpackConfig);
+
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true, publicPath: webpackConfig.output.publicPath,
+}));
+
+app.use(webpackHotMiddleware(compiler, {
+  log: console.log,
+  path: '/__webpack_hmr',
+  heartbeat: 10 * 1000,
+}));
+
+
 const port = 4000;
 
 
@@ -25,6 +44,9 @@ app.use('/posts', getposts);
 app.use('/delete', deleteposts);
 app.use('/edit', editposts);
 
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

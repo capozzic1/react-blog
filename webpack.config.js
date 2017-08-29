@@ -6,9 +6,10 @@ const buildDirectory = 'public';
 
 
 const clientConfig = {
-  entry: './client/index.jsx',
+  entry: ['webpack-hot-middleware/client', './client/index.jsx'],
   output: {
     path: path.resolve(buildDirectory),
+    publicPath: '/',
     filename: 'app.js',
 
   },
@@ -41,16 +42,14 @@ const clientConfig = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+  }
+  
   },
+  plugins: [
 
-  devServer: {
-    hot: true,
-    inline: true,
-    port: 3000,
-    historyApiFallback: {
-      index: 'public/index.html',
-    },
-  },
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+  ],
 };
 
 
