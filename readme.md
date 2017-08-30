@@ -1,1 +1,1 @@
-To run, first npm install the dependencies, then npm run dev-client
+To run, first npm install the dependencies, then npm run dev-server
