@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import renderField from '../FormHelpers/RenderField';
 import { SubmissionError } from 'redux-form';
 import axios from 'axios';
+// import { connect } from 'react-redux';
 
 const validate = (values) => {
   const errors = {};
@@ -35,21 +36,14 @@ class SignUpForm extends React.Component {
   }
 
   onSubmit(userData) {
-    // this.props.signup(userData);
-    axios.post('/api/users', userData)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        throw new SubmissionError({ _error: 'Login failed!' });
-        console.log(error.response.data);
-      });
+    this.props.signup(userData);
+  //  axios.post('/api/users', userData);
   }
 
   render() {
     const { error, handleSubmit, pristine, reset, submitting } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.onSubmit)}>
+      <form >
         {error && (<strong>{error}</strong>)}
         <Field name="username" type="text" component={renderField} label="Username" />
         <Field name="email" type="email" component={renderField} label="Email" />
@@ -57,7 +51,7 @@ class SignUpForm extends React.Component {
         <Field name="passwordConfirm" type="text" component={renderField} label="Enter password to confirm" />
 
         <div>
-          <button type="submit" disabled={submitting}>Sign Up</button>
+          <button type="button" disabled={submitting} onClick={handleSubmit(this.onSubmit)}>Sign Up</button>
           <button type="button" onClick={reset}>Clear Values</button>
         </div>
       </form>
@@ -68,6 +62,6 @@ class SignUpForm extends React.Component {
 
 export default reduxForm({
   form: 'signUpForm',
-  validate,
+
 
 })(SignUpForm);

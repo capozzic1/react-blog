@@ -14,7 +14,7 @@ export default (
     <Route path="/newpost" component={NewPost} />
     <Route path="/single" component={SinglePost} />
     <Route path="/dashboard" component={Dashboard} />
-    <Route path="/login" component={LoginPage} />
+
     <Route path="/signup" component={SignUp} />
   </div>
 

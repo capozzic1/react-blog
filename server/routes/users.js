@@ -8,8 +8,10 @@ router.post('/', (req, res) => {
   const { errors, isValid } = ValidateInput(req.body);
   // console.log(errors, isValid);
 
-  if (!isValid) {
+  if (isValid) {
     // console.log(errors);
+    res.status(200).send({ success: true });
+  } else {
     res.status(400).send(errors);
   }
 });
