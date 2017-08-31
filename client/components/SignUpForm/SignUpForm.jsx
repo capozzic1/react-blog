@@ -19,9 +19,9 @@ const validate = (values) => {
   }
 
   if (!values.password || !values.passwordConfirm) {
-    errors.password = 'Required';
+    errors.passwordConfirm = 'Required';
   } else if (values.password !== values.passwordConfirm) {
-    errors.password = 'Please check that both passwords match.';
+    errors.passwordConfirm = 'Please check that both passwords match.';
   }
 
   return errors;
@@ -37,7 +37,10 @@ class SignUpForm extends React.Component {
 
   onSubmit(userData) {
     this.props.signup(userData);
-  //  axios.post('/api/users', userData);
+  }
+
+  componentWillReceiveProps(nextProps) {
+
   }
 
   render() {
@@ -62,6 +65,6 @@ class SignUpForm extends React.Component {
 
 export default reduxForm({
   form: 'signUpForm',
-
+  validate,
 
 })(SignUpForm);

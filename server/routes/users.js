@@ -1,6 +1,8 @@
 const express = require('express');
 const { ValidateInput } = require('../validations/signupval.js');
 
+const Redirect = require('react-router');
+
 const router = express.Router();
 
 router.post('/', (req, res) => {

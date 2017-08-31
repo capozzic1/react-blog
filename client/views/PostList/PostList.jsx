@@ -3,17 +3,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { findSinglePost, changeRedirect } from '../../redux/actions/postActions';
 import createHistory from 'history/createBrowserHistory';
+import { Alert } from 'react-bootstrap';
+import { closeAlert } from '../../redux/actions/signUpActions';
 
 const history = createHistory();
 
 const mapStateToProps = state => ({
   redirect: state.posts.redirect,
   currPost: state.posts.currentPostInfo,
+  signedUp: state.signup.signedUp,
 });
 
 const mapDispatchToProps = dispatch => ({
   findSinglePost: (postId) => {
     dispatch(findSinglePost(postId));
+  },
+  closeAlert: () => {
+    dispatch(closeAlert());
   },
   changeRedirect: () => {
     dispatch(changeRedirect());
@@ -25,7 +31,9 @@ export class PostList extends React.Component {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleDismiss = this.handleDismiss.bind(this);
   }
+
   /*
   get the className, compare it to all of the posts,
   find the post, send the post to the single view
@@ -38,10 +46,14 @@ export class PostList extends React.Component {
     this.props.findSinglePost(postId);
   }
 
+  handleDismiss() {
+    this.props.closeAlert();
+  }
+
 
   render() {
-    let posts;
-    posts = this.props.posts;
+    const posts = this.props.posts;
+    const signedUp = this.props.signedUp;
     console.log(this.props.redirect);
 
     const postDivs = posts.map(post => (
@@ -60,6 +72,9 @@ export class PostList extends React.Component {
 
     return (
       <div className="post-container">
+        { signedUp &&
+          (<Alert bsStyle="success" onDismiss={this.handleDismiss}>Success! You have successfully signed up. </Alert>)
+        }
         {postDivs}
       </div>
     );

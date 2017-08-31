@@ -16,6 +16,7 @@ const webpackConfig = require('../webpack.config');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
+const port = 4000;
 const compiler = webpack(webpackConfig);
 
 app.use(webpackMiddleware(compiler, {
@@ -24,12 +25,7 @@ app.use(webpackMiddleware(compiler, {
 
 app.use(webpackHotMiddleware(compiler, {
   log: console.log,
-  path: '/__webpack_hmr',
-  heartbeat: 10 * 1000,
 }));
-
-
-const port = 4000;
 
 
 app.use(cors());

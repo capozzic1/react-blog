@@ -1,6 +1,10 @@
 
+
 export default function reducer(state = {
   signupRedirect: false,
+  type: null,
+  text: null,
+  signedUp: null,
 }, action) {
   switch (action.type) {
     case 'SIGNUP_REDIRECT_YES': {
@@ -8,9 +12,19 @@ export default function reducer(state = {
         ...state, signupRedirect: action.payload,
       };
     }
-    case 'SIGNUP_REDIRECT_NO' : {
+
+    case 'ADD_FLASH_MESSAGE': {
       return {
-        ...state, signupRedirect: action.payload,
+        ...state,
+        type: action.payload.type,
+        text: action.payload.text,
+        signedUp: true,
+      };
+    }
+    case 'CLOSE_ALERT': {
+      return {
+        ...state,
+        signedUp: false,
       };
     }
   }
