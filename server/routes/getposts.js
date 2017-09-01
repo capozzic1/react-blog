@@ -1,5 +1,5 @@
 const express = require('express');
-const Post = require('../models/models');
+const Post = require('../models/post');
 
 const router = express.Router();
 
@@ -10,4 +10,4 @@ router.get('/', (req, res) => {
   });
 });
 
-module.exports = router;;
+module.exports = router;
