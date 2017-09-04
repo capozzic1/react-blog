@@ -1,6 +1,6 @@
 
 const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
+// const crypto = require('crypto'); used for pw resets
 const User = require('../models/user');
 const config = require('../config/main');
 
