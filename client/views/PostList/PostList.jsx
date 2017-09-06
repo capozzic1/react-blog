@@ -6,6 +6,7 @@ import createHistory from 'history/createBrowserHistory';
 import { Alert } from 'react-bootstrap';
 import { closeAlert } from '../../redux/actions/signUpActions';
 
+
 const history = createHistory();
 
 const mapStateToProps = state => ({
@@ -26,7 +27,7 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export class PostList extends React.Component {
+class PostList extends React.Component {
   constructor(props) {
     super(props);
 
@@ -80,5 +81,6 @@ export class PostList extends React.Component {
     );
   }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList);

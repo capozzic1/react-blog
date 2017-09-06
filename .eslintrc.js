@@ -1,22 +1,11 @@
 module.exports = {
+
     "extends": "airbnb",
-
-  "plugins": [
-    "react"
-  ],
-
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+    "rules" : {
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }]
     }
-  },
-"rules": {
-  "react/jsx-uses-react": "error",
-  "react/jsx-uses-vars": "error",
-  "react/self-closing-comp": ["error", {
-    "component": false,
-    "html": false
-  }]
-}
+
+
 
 };

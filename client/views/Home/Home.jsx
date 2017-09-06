@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   postCon: state,
 });
 
+
 const mapDispatchToProps = dispatch => ({
   fetchPosts: () => {
     dispatch(fetchPosts());
@@ -37,12 +38,12 @@ class Home extends React.Component {
 
     console.log(posts);
     return (
-      <Layout>
-
+      <Layout >
         <PostList posts={posts} />
       </Layout>
     );
   }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
