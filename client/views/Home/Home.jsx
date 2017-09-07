@@ -5,6 +5,11 @@ import Layout from '../../components/Layout/Layout';
 
 import PostList from '../PostList/PostList';
 import { fetchPosts } from '../../redux/actions/postActions';
+import Radium, { Style } from 'radium';
+/*
+font-family: 'Merriweather', serif;
+font-family: 'Open Sans', sans-serif;
+*/
 
 
 const mapStateToProps = state => ({
@@ -40,6 +45,14 @@ class Home extends React.Component {
     return (
       <Layout >
         <PostList posts={posts} />
+        <Style
+          scopeSelector=".container"
+          rules={{
+            a: { textDecoration: 'none' },
+            'a, h1, h2': { fontFamily: 'Merriweather, serif' },
+            p: { fontFamily: 'Open Sans, sans-serif' },
+          }}
+        />;
       </Layout>
     );
   }

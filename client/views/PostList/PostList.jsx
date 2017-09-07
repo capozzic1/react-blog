@@ -5,7 +5,7 @@ import { findSinglePost, changeRedirect } from '../../redux/actions/postActions'
 import createHistory from 'history/createBrowserHistory';
 import { Alert } from 'react-bootstrap';
 import { closeAlert } from '../../redux/actions/signUpActions';
-
+import Radium from 'radium';
 
 const history = createHistory();
 
@@ -26,6 +26,24 @@ const mapDispatchToProps = dispatch => ({
     dispatch(changeRedirect());
   },
 });
+
+const styles = {
+  postItem: {
+    border: '1px solid black',
+    paddingLeft: '10px',
+  },
+  postContainer: {
+    position: 'relative',
+    top: '22px',
+  },
+  postDetails: {
+    position: 'relative',
+    bottom: '15px',
+  },
+  postDate: {
+    height: '7px',
+  },
+};
 
 class PostList extends React.Component {
   constructor(props) {
@@ -58,10 +76,12 @@ class PostList extends React.Component {
     console.log(this.props.redirect);
 
     const postDivs = posts.map(post => (
-      <div className="post-item" key={post._id}>
+      <div className="post-item" key={post._id} style={styles.postItem}>
         <a href="" onClick={this.handleClick}><h2 className={post._id}>{post.title}</h2></a>
-        <h3 className="post-date">{post.date}</h3>
-        <h3 className="author">{post.author}</h3>
+        <div className="post-details" style={styles.postDetails}>
+          <h3 className="post-date" style={styles.postDate}>Date: {post.date}</h3>
+          <h3 className="author" >Posted by: {post.author}</h3>
+        </div>
         <p className="body">{post.body}</p>
       </div>
     ));
@@ -72,7 +92,7 @@ class PostList extends React.Component {
     }
 
     return (
-      <div className="post-container">
+      <div className="post-container" style={styles.postContainer}>
         { signedUp &&
           (<Alert bsStyle="success" onDismiss={this.handleDismiss}>Success! You have successfully signed up. </Alert>)
         }
@@ -82,5 +102,6 @@ class PostList extends React.Component {
   }
 }
 
+PostList = Radium(PostList);
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList);

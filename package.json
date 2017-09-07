@@ -39,6 +39,7 @@
     "axios": "^0.16.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
+    "color": "^2.0.0",
     "concurrently": "^3.5.0",
     "connect-flash": "^0.1.1",
     "cors": "^2.8.4",

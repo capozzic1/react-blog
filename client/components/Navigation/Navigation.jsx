@@ -2,30 +2,53 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Radium, { Style } from 'radium';
+
+const color = require('color');
 /* eslint-disable */
 
 var styles = {
   nav: {
-    links: {
-    paddingLeft:'15'
-  }
+    position: 'relative',
+    top: '20px',
+    width: '100%'
+
+
   },
+  navlink: {
+    display:'inline-block',
+    textShadow: '1px 1px .5px blue',
+
+    ':hover': {
+      textDecoration: 'none',
+      background: '#cccccc',
+      color: 'white',
+
+    }
+  },
+  navLinkWrap: {
+    width:'50%'
+  }
+
 };
 
 
 
 let Navigation = () => (
 
-  <nav>
-    <RadiumLink to="/"  className="navtest">Lucid Web Dream</RadiumLink>
-    <RadiumLink to="/"  className="navtest">About</RadiumLink>
-    <RadiumLink to="/"  className="navtest">Contact</RadiumLink>
-    <RadiumLink to="/"  className="navtest">Portfolio</RadiumLink>
-    <RadiumLink to="/"  className="navtest">Blog</RadiumLink>
+  <nav style={styles.nav}>
+    <div className="nav-link-wrap" styles={styles.navLinkWrap}>
+      <RadiumLink to="/"  className="nav-link" style={styles.navlink}>Lucid Web Dream</RadiumLink>
+      <RadiumLink to="/"  className="nav-link" style={styles.navlink}>Blog home</RadiumLink>
+    </div>
+
+
     <Style
-      scopeSelector=".navtest"
+      scopeSelector=".nav-link"
       rules={{
-        paddingLeft: '15px'
+        padding: '10px',
+        fontSize: '1.5em',
+        color: 'black',
+
       }}
     />
   </nav>
