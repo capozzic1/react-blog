@@ -5,7 +5,7 @@ import { findSinglePost, changeRedirect } from '../../redux/actions/postActions'
 import createHistory from 'history/createBrowserHistory';
 import { Alert } from 'react-bootstrap';
 import { closeAlert } from '../../redux/actions/signUpActions';
-import Radium from 'radium';
+import Radium, { Style } from 'radium';
 
 const history = createHistory();
 
@@ -31,6 +31,8 @@ const styles = {
   postItem: {
     border: '1px solid black',
     paddingLeft: '10px',
+    minHeight: '230px',
+    marginTop: '15px',
   },
   postContainer: {
     position: 'relative',
@@ -80,7 +82,7 @@ class PostList extends React.Component {
         <a href="" onClick={this.handleClick}><h2 className={post._id}>{post.title}</h2></a>
         <div className="post-details" style={styles.postDetails}>
           <h3 className="post-date" style={styles.postDate}>Date: {post.date}</h3>
-          <h3 className="author" >Posted by: {post.author}</h3>
+          <h3 className="author" style={styles.postAuthor}>Posted by: {post.author}</h3>
         </div>
         <p className="body">{post.body}</p>
       </div>
@@ -97,6 +99,19 @@ class PostList extends React.Component {
           (<Alert bsStyle="success" onDismiss={this.handleDismiss}>Success! You have successfully signed up. </Alert>)
         }
         {postDivs}
+        <Style
+
+          rules={{
+            mediaQueries: {
+              '(min-width: 550px)': {
+                '.post-item': {
+                  width: '40em',
+                  margin: '0 auto',
+                },
+              },
+            },
+          }}
+        />
       </div>
     );
   }

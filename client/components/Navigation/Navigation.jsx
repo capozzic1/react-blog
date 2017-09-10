@@ -26,7 +26,7 @@ var styles = {
     }
   },
   navLinkWrap: {
-    width:'50%'
+    width:'70%'
   }
 
 };
@@ -36,7 +36,7 @@ var styles = {
 let Navigation = () => (
 
   <nav style={styles.nav}>
-    <div className="nav-link-wrap" styles={styles.navLinkWrap}>
+    <div className="nav-link-wrap" style={styles.navLinkWrap}>
       <RadiumLink to="/"  className="nav-link" style={styles.navlink}>Lucid Web Dream</RadiumLink>
       <RadiumLink to="/"  className="nav-link" style={styles.navlink}>Blog home</RadiumLink>
     </div>
