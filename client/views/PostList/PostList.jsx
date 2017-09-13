@@ -45,6 +45,9 @@ const styles = {
   postDate: {
     height: '7px',
   },
+  postTitle: {
+    color: 'royalblue',
+  },
 };
 
 class PostList extends React.Component {
@@ -79,7 +82,7 @@ class PostList extends React.Component {
 
     const postDivs = posts.map(post => (
       <div className="post-item" key={post._id} style={styles.postItem}>
-        <a href="" onClick={this.handleClick}><h2 className={post._id}>{post.title}</h2></a>
+        <a href="" onClick={this.handleClick} style={styles.postTitle}><h2 className={post._id}>{post.title}</h2></a>
         <div className="post-details" style={styles.postDetails}>
           <h3 className="post-date" style={styles.postDate}>Date: {post.date}</h3>
           <h3 className="author" style={styles.postAuthor}>Posted by: {post.author}</h3>

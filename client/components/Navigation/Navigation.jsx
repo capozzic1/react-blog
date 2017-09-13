@@ -9,14 +9,15 @@ const color = require('color');
 var styles = {
   nav: {
     position: 'relative',
-    top: '20px',
-    width: '100%'
-
+    background: 'aliceblue',
+    boxShadow: '10px 5px 3px #888888',
+    width: '100%',
+    height: '5em',
 
   },
   navlink: {
     display:'inline-block',
-    textShadow: '1px 1px .5px blue',
+
 
     ':hover': {
       textDecoration: 'none',
@@ -26,8 +27,12 @@ var styles = {
     }
   },
   navLinkWrap: {
-    width:'70%'
+    position: 'relative',
+    top: '50%',
+    transform: 'translateY(-50%)'
+
   }
+
 
 };
 

@@ -55,8 +55,13 @@ let SinglePost = (props) => {
               },
               '.titleAuthor, .postDate':{
                 width:'50%'
+              },
+              '.single-post':{
+                width: '35em',
+                margin: '0 auto'
               }
-            }
+            },
+
           }
         }}
       />

@@ -11,7 +11,7 @@ import { fetchPosts, deletePosts,
 import createHistory from 'history/createBrowserHistory';
 import EditModal from '../../components/EditModal/EditModal';
 import PostBtn from '../../components/PostBtn/PostBtn';
-
+import Radium from 'radium';
 
 const history = createHistory();
 
@@ -52,6 +52,19 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+const styles = {
+  dashContainer: {
+    border: '1px solid black',
+    width: '45em',
+    margin: '0 auto',
+    position: 'relative',
+    top: '3em',
+  },
+  btnTableWrap: {
+    width: '50%',
+    margin: '0 auto',
+  },
+};
 class Dashboard extends React.Component {
   constructor() {
     super();
@@ -150,24 +163,26 @@ class Dashboard extends React.Component {
               handleSave={this.props.handleSave}
             />
           ) : (
-            <div>
-              <button className="edit" onClick={this.handleEdit}>Edit</button>
-              <button className="delete" onClick={this.confirmDelete}>Delete</button>
-              <button className="deleteAll" onClick={this.deleteAll}>Delete all posts</button>
-              <PostBtn />
-              <table>
-                <tbody>
-                  <tr>
+            <div className="dash-container" style={styles.dashContainer}>
+              <div className="btn-table-wrap" style={styles.btnTableWrap}>
+                <button className="edit" onClick={this.handleEdit}>Edit</button>
+                <button className="delete" onClick={this.confirmDelete}>Delete</button>
+                <button className="deleteAll" onClick={this.deleteAll}>Delete all posts</button>
+                <PostBtn />
+                <table>
+                  <tbody>
+                    <tr>
 
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Date</th>
+                      <th>Title</th>
+                      <th>Author</th>
+                      <th>Date</th>
 
-                  </tr>
+                    </tr>
 
-                  {rows}
-                </tbody>
-              </table>
+                    {rows}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )
         }
@@ -175,5 +190,5 @@ class Dashboard extends React.Component {
     );
   }
 }
-
+Dashboard = Radium(Dashboard);
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
