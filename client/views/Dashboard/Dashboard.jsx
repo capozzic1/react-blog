@@ -10,7 +10,7 @@ import { fetchPosts, deletePosts,
   handleSave } from '../../redux/actions/postActions';
 import createHistory from 'history/createBrowserHistory';
 import EditModal from '../../components/EditModal/EditModal';
-import PostBtn from '../../components/PostBtn/PostBtn';
+import DashButtons from '../../components/DashButtons/DashButtons';
 import Radium from 'radium';
 
 const history = createHistory();
@@ -164,25 +164,27 @@ class Dashboard extends React.Component {
             />
           ) : (
             <div className="dash-container" style={styles.dashContainer}>
-              <div className="btn-table-wrap" style={styles.btnTableWrap}>
-                <button className="edit" onClick={this.handleEdit}>Edit</button>
-                <button className="delete" onClick={this.confirmDelete}>Delete</button>
-                <button className="deleteAll" onClick={this.deleteAll}>Delete all posts</button>
-                <PostBtn />
-                <table>
-                  <tbody>
-                    <tr>
 
-                      <th>Title</th>
-                      <th>Author</th>
-                      <th>Date</th>
 
-                    </tr>
+              <DashButtons
+                handleEdit={this.handleEdit}
+                confirmDelete={this.confirmDelete}
+                deleteAll={this.deleteAll}
+              />
+              <table>
+                <tbody>
+                  <tr>
 
-                    {rows}
-                  </tbody>
-                </table>
-              </div>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Date</th>
+
+                  </tr>
+
+                  {rows}
+                </tbody>
+              </table>
+
             </div>
           )
         }
