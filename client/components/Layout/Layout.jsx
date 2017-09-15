@@ -15,8 +15,8 @@ export default class Layout extends React.Component {
           scopeSelector=".container"
           rules={{
             a: { textDecoration: 'none' },
-            'a, h1, h2': { fontFamily: 'Merriweather, serif' },
-            p: { fontFamily: 'Open Sans, sans-serif' },
+            'a, h1, h2, th, label': { fontFamily: 'Merriweather, serif' },
+            'p, td, button': { fontFamily: 'Open Sans, sans-serif' },
           }}
         />
       </div>

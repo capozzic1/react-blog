@@ -9,8 +9,9 @@ const styles = {
     background: 'ghostwhite',
     fontSize: '18px',
     padding: '8px',
-    border: '1px solid black',
+    border: '1px solid lightblue',
     marginLeft: '10px',
+    fontWeight: '800',
   },
   btnsContain: {
     width: '100%',

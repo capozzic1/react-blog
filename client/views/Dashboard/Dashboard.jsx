@@ -11,7 +11,7 @@ import { fetchPosts, deletePosts,
 import createHistory from 'history/createBrowserHistory';
 import EditModal from '../../components/EditModal/EditModal';
 import DashButtons from '../../components/DashButtons/DashButtons';
-import Radium from 'radium';
+import Radium, { Style } from 'radium';
 
 const history = createHistory();
 
@@ -54,7 +54,7 @@ const mapDispatchToProps = dispatch => ({
 
 const styles = {
   dashContainer: {
-    border: '1px solid black',
+
     width: '45em',
     margin: '0 auto',
     position: 'relative',
@@ -63,6 +63,20 @@ const styles = {
   btnTableWrap: {
     width: '50%',
     margin: '0 auto',
+  },
+  table: {
+    margin: '0 auto',
+    position: 'relative',
+    top: '2em',
+    width: '40em',
+    textAlign: 'center',
+    borderCollapse: 'collapse',
+  },
+  rowHeaders: {
+    fontSize: '1.5em',
+  },
+  postRows: {
+    fontSize: '20px',
   },
 };
 class Dashboard extends React.Component {
@@ -136,7 +150,7 @@ class Dashboard extends React.Component {
     const posts = this.props.posts;
     // console.log(posts);
     const rows = posts.map(post =>
-      (<tr key={post._id}>
+      (<tr key={post._id} style={styles.postRows}>
         <td><input type="checkbox" onClick={this.handleChange} className={post._id} /></td>
         <td><a href="" onClick={this.handleClick} className={post._id}>{post.title}</a></td>
         <td>{post.author}</td>
@@ -171,10 +185,10 @@ class Dashboard extends React.Component {
                 confirmDelete={this.confirmDelete}
                 deleteAll={this.deleteAll}
               />
-              <table>
+              <table style={styles.table}>
                 <tbody>
-                  <tr>
-
+                  <tr className="row-headers" style={styles.rowHeaders}>
+                    <th>Check</th>
                     <th>Title</th>
                     <th>Author</th>
                     <th>Date</th>
@@ -186,8 +200,24 @@ class Dashboard extends React.Component {
               </table>
 
             </div>
+
           )
+
         }
+
+        <Style
+          scopeSelector="table"
+          rules={{
+            'table, td, th': {
+              border: '1px solid black' },
+            'tr:nth-child(even)': {
+              background: 'aliceblue',
+            },
+            '.row-headers': {
+              background: 'deepskyblue',
+            },
+          }}
+        />
       </Layout>
     );
   }

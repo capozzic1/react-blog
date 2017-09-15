@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Layout from '../../components/Layout/Layout';
-
+import Radium, { Style } from 'radium';
 
 export default class NewPost extends React.Component {
   constructor() {
@@ -57,8 +57,9 @@ export default class NewPost extends React.Component {
     return (
       <Layout>
         <section className="form-wrapper" id="post-form">
-          <h2>New Post</h2>
-          <form onSubmit={this.handleSubmit}>
+
+          <form className="new-post" onSubmit={this.handleSubmit}>
+            <h2>New Post</h2>
             <label htmlFor="post-title">Post title</label><br />
             <input
               name="title"
@@ -67,12 +68,40 @@ export default class NewPost extends React.Component {
               onChange={this.handleInput}
             />
             <div className="text-wrapper">
+              <label htmlFor="post-body">Post body</label><br />
               <textarea name="body" className="text-area" onChange={this.handleInput} />
             </div>
-            <button type="submit" >Submit</button>
+            <button type="submit" className="sub-button" >Submit</button>
           </form>
         </section>
+        <Style
+          scopeSelector=".form-wrapper"
+          rules={{
+            'input, textarea': {
+              width: '20em',
+              padding: '10px',
+            },
+            '.text-wrapper': {
+              marginTop: '14px',
+
+            },
+            '.new-post': {
+              margin: '0 auto',
+              width: '40em',
+            },
+            '.sub-button': {
+              background: 'skyblue',
+              border: '2px solid darkblue',
+              padding: '10px',
+              width: '10em',
+              marginTop: '8px',
+              fontWeight: 600,
+            },
+          }}
+        />
       </Layout>
     );
   }
 }
+
+NewPost = Radium(NewPost);
