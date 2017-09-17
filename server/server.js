@@ -52,7 +52,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger('dev'));
 
-app.use('/', authRoutes);
+app.use('/api', authRoutes);
 app.use('/newpost', newpost);
 app.use('/posts', getposts);
 app.use('/delete', deleteposts);

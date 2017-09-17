@@ -32,7 +32,8 @@ class SignUp extends React.Component {
         type: 'success',
         text: 'You signed up successfully. Welcome!',
       });
-      this.props.history.push('/');
+      this.props.history.push('/login');
+
       // <Redirect to="/" />;
     }
   }

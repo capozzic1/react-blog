@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
 
   // console.log(newPost);
 
-  newPost.save((err, fluffy) => {
+  newPost.save((err) => {
     if (err) return console.error(err);
   });
 

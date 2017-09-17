@@ -7,6 +7,7 @@ const router = express.Router();
 /* es-lint-disable */
 router.post('/register', (req, res, next) => {
   console.log(req.body);
+
   User.register(new User({ username: req.body.username }), req.body.password, (err) => {
     if (err) {
       console.log(err);

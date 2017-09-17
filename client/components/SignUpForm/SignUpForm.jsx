@@ -8,14 +8,11 @@ import axios from 'axios';
 const validate = (values) => {
   const errors = {};
 
+
   if (!values.username) {
     errors.username = 'Required';
-  }
-
-  if (!values.email) {
-    errors.username = 'Required';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
+    errors.username = 'Invalid email address';
   }
 
   if (!values.password || !values.passwordConfirm) {
@@ -36,20 +33,18 @@ class SignUpForm extends React.Component {
   }
 
   onSubmit(userData) {
+    console.log(userData);
     this.props.signup(userData);
   }
 
-  componentWillReceiveProps(nextProps) {
-
-  }
 
   render() {
     const { error, handleSubmit, pristine, reset, submitting } = this.props;
     return (
       <form >
         {error && (<strong>{error}</strong>)}
-        <Field name="username" type="text" component={renderField} label="Username" />
-        <Field name="email" type="email" component={renderField} label="Email" />
+
+        <Field name="username" type="email" component={renderField} label="Email" />
         <Field name="password" type="text" component={renderField} label="Password" />
         <Field name="passwordConfirm" type="text" component={renderField} label="Enter password to confirm" />
 
@@ -65,6 +60,5 @@ class SignUpForm extends React.Component {
 
 export default reduxForm({
   form: 'signUpForm',
-  validate,
 
 })(SignUpForm);

@@ -23,26 +23,16 @@ class LoginForm extends React.Component {
   constructor(props){
     super(props)
 
-    this.state = {
-      indentifier: '',
-      password: '',
-      errors: {},
-      isLoading: false
-    }
 
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   onSubmit(user){
+    console.log(user)
+    this.props.login(user);
 
-    this.props.login(user).then(
-      (res, err) => {
-        if (err) {
-          console.log(err);
-        }
-        history.push('/dashboard');
-        history.go('/dashboard');
-    })
+    /* capozzic21@gmail.com
+    test*/
   }
 
   render(){
