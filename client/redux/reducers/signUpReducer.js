@@ -5,6 +5,7 @@ export default function reducer(state = {
   type: null,
   text: null,
   signedUp: null,
+  loggedIn: null,
 }, action) {
   switch (action.type) {
     case 'SIGNUP_REDIRECT_YES': {
@@ -25,6 +26,19 @@ export default function reducer(state = {
       return {
         ...state,
         signedUp: false,
+      };
+    }
+    case 'AUTHENTICATED_YES': {
+      return {
+        ...state,
+        loggedIn: true,
+      };
+    }
+
+    case 'LOGGED_OUT': {
+      return {
+        ...state,
+        loggedIn: false,
       };
     }
   }

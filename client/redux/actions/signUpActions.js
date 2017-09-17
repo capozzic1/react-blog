@@ -18,13 +18,26 @@ export const signUp = userData => (dispatch) => {
 
 export const login = userData => (dispatch) => {
   axios.post('/api/login', userData)
-    .then((response) => {
-      dispatch({ type: 'AUTHENTICATED_YES', payload: true });
+    .then(() => {
       console.log(response);
     })
     .catch((error) => {
       console.log(error.response);
     });
+
+  dispatch({ type: 'AUTHENTICATED_YES', payload: true });
+};
+
+export const logout = () => (dispatch) => {
+  axios.get('/api/logout')
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+
+  dispatch({ type: 'LOGGED_OUT', payload: false });
 };
 
 export const addFlashMessage = data => ({
