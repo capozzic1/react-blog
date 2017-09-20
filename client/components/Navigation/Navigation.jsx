@@ -38,12 +38,18 @@ var styles = {
 
 
 
-let Navigation = () => (
+class Navigation extends React.Component {
+constructor(props){
+  super(props)
+}
 
+render(){
+  return (
   <nav style={styles.nav}>
     <div className="nav-link-wrap" style={styles.navLinkWrap}>
       <RadiumLink to="/"  className="nav-link" style={styles.navlink}>Lucid Web Dream</RadiumLink>
       <RadiumLink to="/"  className="nav-link" style={styles.navlink}>Blog home</RadiumLink>
+      {this.props.loggedIn && <button onClick={this.props.logout}>Logout</button>}
     </div>
 
 
@@ -57,7 +63,9 @@ let Navigation = () => (
       }}
     />
   </nav>
-);
+)
+}
+}
 
 
 let RadiumLink = Radium(Link);

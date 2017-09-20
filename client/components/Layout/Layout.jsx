@@ -2,14 +2,25 @@
 import React from 'react';
 import Navigation from '../Navigation/Navigation';
 import Radium, { Style } from 'radium';
+import { connect } from 'react-redux';
+import { logout } from '../../redux/actions/signUpActions';
 
-export default class Layout extends React.Component {
+const mapStateToProps = state => ({
+  loggedIn: state.signup.loggedIn,
+});
+
+const mapDispatchToProps = dispatch => ({
+  logout: () => {
+    dispatch(logout());
+  },
+});
+class Layout extends React.Component {
   render() {
     // console.log(this.props.posts);
     return (
 
       <div className="container">
-        <Navigation />
+        <Navigation loggedIn={this.props.loggedIn} logout={this.props.logout} />
         {this.props.children}
         <Style
           scopeSelector=".container"
@@ -24,3 +35,5 @@ export default class Layout extends React.Component {
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

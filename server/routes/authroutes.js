@@ -7,6 +7,7 @@ const router = express.Router();
 /* es-lint-disable */
 router.post('/register', (req, res, next) => {
   console.log(req.body);
+
   User.register(new User({ username: req.body.username }), req.body.password, (err) => {
     if (err) {
       console.log(err);
@@ -18,12 +19,14 @@ router.post('/register', (req, res, next) => {
 });
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
-  console.log('success');
   console.log(req.user);
 });
 
 router.get('/logout', (req, res) => {
   req.logout();
+  /* req.session.destroy((err) => {
+    console.log('destroyed');
+  }); */
 
   console.log('logged out');
 });

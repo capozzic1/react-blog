@@ -15,6 +15,7 @@ const webpackConfig = require('../webpack.config');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const passport = require('passport');
+const session = require('express-session');
 
 const port = 4000;
 const compiler = webpack(webpackConfig);
@@ -25,6 +26,7 @@ const logger = require('morgan');
 const LocalStrategy = require('passport-local').Strategy;
 
 app.use(passport.initialize());
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 100000 } }));
 app.use(passport.session());
 
 // passport config
@@ -52,7 +54,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger('dev'));
 
-app.use('/', authRoutes);
+app.use('/api', authRoutes);
 app.use('/newpost', newpost);
 app.use('/posts', getposts);
 app.use('/delete', deleteposts);
