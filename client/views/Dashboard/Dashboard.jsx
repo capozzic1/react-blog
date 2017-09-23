@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Layout from '../../components/Layout/Layout';
 import { fetchPosts, deletePosts,
   findSinglePost,
@@ -13,8 +14,8 @@ import EditModal from '../../components/EditModal/EditModal';
 import DashButtons from '../../components/DashButtons/DashButtons';
 import Radium, { Style } from 'radium';
 
-const history = createHistory();
 
+const history = createHistory();
 
 const mapStateToProps = state => ({
   posts: state.posts.posts,
@@ -222,5 +223,23 @@ class Dashboard extends React.Component {
     );
   }
 }
+
+Dashboard.PropTypes = {
+  posts: PropTypes.array.isRequired,
+  redirect: PropTypes.bool.isRequired,
+  currPost: PropTypes.array.isRequired,
+  edit: PropTypes.bool.isRequired,
+  editPostId: PropTypes.bool.isRequired,
+  checked: PropTypes.bool.isRequired,
+  fetchPosts: PropTypes.func.isRequired,
+  deletePosts: PropTypes.func.isRequired,
+  findSinglePost: PropTypes.func.isRequired,
+  sendEdit: PropTypes.func.isRequired,
+  sendChanges: PropTypes.func.isRequired,
+  changeRedirect: PropTypes.func.isRequired,
+  checkBoxChange: PropTypes.func.isRequired,
+  handleSave: PropTypes.func.isRequired,
+};
+
 Dashboard = Radium(Dashboard);
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

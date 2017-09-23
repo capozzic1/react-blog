@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import Layout from '../../components/Layout/Layout';
 import Radium, { Style } from 'radium';
+import createHistory from 'history/createBrowserHistory';
+
+const history = createHistory();
 
 export default class NewPost extends React.Component {
   constructor() {
@@ -35,6 +38,8 @@ export default class NewPost extends React.Component {
     const currentDate = dateObj.toString();
 
     this.handlePost(this.state.title, this.state.body, currentDate);
+    history.push('/dashboard');
+    history.go('/dashboard');
   }
 
   handlePost(title, body, date) {

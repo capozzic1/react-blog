@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
 import Radium from 'radium';
+import PropTypes from 'prop-types';
 
 const styles = {
   btn: {
@@ -19,7 +19,8 @@ const styles = {
   },
 };
 
-let DashButtons = props => (
+
+const DashButtons = props => (
   // on click, goes to a form for create a new post
   <div className="dashBtns" style={styles.btnsContain}>
     <button style={styles.btn} className="edit btn" onClick={props.handleEdit}>Edit</button>
@@ -29,5 +30,10 @@ let DashButtons = props => (
   </div>
 );
 
-DashButtons = Radium(DashButtons);
-export default DashButtons;
+DashButtons.propTypes = {
+  handleEdit: PropTypes.func.isRequired,
+  confirmDelete: PropTypes.func.isRequired,
+  deleteAll: PropTypes.func.isRequired,
+};
+
+export default Radium(DashButtons);
