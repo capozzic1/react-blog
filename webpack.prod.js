@@ -49,9 +49,9 @@ const clientConfig = {
   plugins: [
     new CleanWebpackPlugin(['public']),
     new HtmlWebpackPlugin({
-      title: 'Production'
+      title: 'Production',
     }),
-    new UglifyJSPlugin()
+    new UglifyJSPlugin(),
   ],
 };
 
