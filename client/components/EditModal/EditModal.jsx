@@ -25,7 +25,9 @@ class EditModal extends React.Component {
 
     this.props.handleSave([newObj]);
 
-    history.go('/dashboard');
+    this.props.fetchPosts();
+
+    this.props.sendEdit(false);
   }
 
 

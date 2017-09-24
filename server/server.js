@@ -39,14 +39,14 @@ passport.deserializeUser(User.deserializeUser());
 // db connection
 mongoose.connect(config.database);
 
-if ( app.get('env') === 'development'){
-app.use(webpackMiddleware(compiler, {
-  noInfo: true, publicPath: webpackConfig.output.publicPath,
-}));
+if (app.get('env') === 'development') {
+  app.use(webpackMiddleware(compiler, {
+    noInfo: true, publicPath: webpackConfig.output.publicPath,
+  }));
 
-app.use(webpackHotMiddleware(compiler, {
-  log: console.log,
-}));
+  app.use(webpackHotMiddleware(compiler, {
+    log: console.log,
+  }));
 }
 
 app.use(cors());

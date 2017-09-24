@@ -4,16 +4,26 @@ import Layout from '../../components/Layout/Layout';
 import Radium, { Style } from 'radium';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
+import { fetchPosts } from '../../redux/actions/postActions';
+import createHistory from 'history/createBrowserHistory';
 
-export default class NewPost extends React.Component {
-  constructor() {
-    super();
+const history = createHistory();
+
+const mapDispatchToProps = dispatch => ({
+  fetchPosts: () => {
+    dispatch(fetchPosts());
+  },
+});
+
+class NewPost extends React.Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
       title: '',
       author: 'capozzic',
       body: '',
-      submitted:false
+      submitted: false,
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -38,10 +48,10 @@ export default class NewPost extends React.Component {
     const currentDate = dateObj.toString();
 
     this.handlePost(this.state.title, this.state.body, currentDate);
-
-      this.setState({
-        submitted: true
-      })
+    this.props.fetchPosts();
+    this.setState({
+      submitted: true,
+    });
   }
 
   handlePost(title, body, date) {
@@ -51,22 +61,13 @@ export default class NewPost extends React.Component {
       author: this.state.author,
       date,
 
-    })
-      .then((response) => {
-
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-
+    });
   }
 
   render() {
     return (
       <Layout>
-        { this.state.submitted && <Redirect to='/dashboard' />}
+        { this.state.submitted && <Redirect push to="/dashboard" />}
         <section className="form-wrapper" id="post-form">
 
           <form className="new-post" onSubmit={this.handleSubmit}>
@@ -116,3 +117,4 @@ export default class NewPost extends React.Component {
 }
 
 NewPost = Radium(NewPost);
+export default connect(null, mapDispatchToProps)(NewPost);

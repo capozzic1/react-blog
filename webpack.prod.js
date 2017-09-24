@@ -49,7 +49,8 @@ const clientConfig = {
   plugins: [
     new CleanWebpackPlugin(['public']),
     new HtmlWebpackPlugin({
-      title: 'Production',
+      title: 'A react-redux blog',
+      template: 'index.html',
     }),
     new UglifyJSPlugin(),
   ],

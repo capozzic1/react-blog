@@ -5,7 +5,7 @@ export default function reducer(state = {
   type: null,
   text: null,
   signedUp: null,
-  loggedIn: true,
+  loggedIn: null,
 }, action) {
   switch (action.type) {
     case 'SIGNUP_REDIRECT_YES': {
