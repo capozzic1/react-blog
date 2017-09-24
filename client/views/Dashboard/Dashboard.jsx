@@ -9,7 +9,7 @@ import { fetchPosts, deletePosts,
   changeRedirect,
   checkBoxChange,
   handleSave } from '../../redux/actions/postActions';
-import { dashLogged } from '../../redux/actions/signUpActions'
+import { dashLogged } from '../../redux/actions/signUpActions';
 import createHistory from 'history/createBrowserHistory';
 import EditModal from '../../components/EditModal/EditModal';
 import DashButtons from '../../components/DashButtons/DashButtons';
@@ -52,9 +52,9 @@ const mapDispatchToProps = dispatch => ({
   handleSave: (currPost) => {
     dispatch(handleSave(currPost));
   },
-  dashLogged:() => {
+  dashLogged: () => {
     dispatch(dashLogged());
-  }
+  },
 });
 
 const styles = {
@@ -97,9 +97,8 @@ class Dashboard extends React.Component {
     this.deleteAll = this.deleteAll.bind(this);
   }
   componentDidMount() {
-    this.props.dashLogged();
+    // this.props.dashLogged();
     this.fetchPosts();
-
   }
 
   handleClick(e) {

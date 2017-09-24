@@ -31,6 +31,11 @@ export default function reducer(state = {
         posts: action.payload,
       };
     }
+    case 'NEW_POST': {
+      return {
+        ...state,
+      };
+    }
 /* eslint-disable indent, linebreak-style */
     case 'FIND_SINGLE_POST': {
         const posts = state.posts;

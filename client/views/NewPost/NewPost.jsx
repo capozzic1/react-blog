@@ -4,16 +4,22 @@ import Layout from '../../components/Layout/Layout';
 import Radium, { Style } from 'radium';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
+import { newPost } from '../../redux/actions/postActions';
 
-export default class NewPost extends React.Component {
-  constructor() {
-    super();
+const mapDispatchToProps = dispatch => ({
+  handlePost: (arg1, arg2, arg3) => {
+    dispatch(newPost(arg1, arg2, arg3));
+  },
+});
+class NewPost extends React.Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
       title: '',
       author: 'capozzic',
       body: '',
-      submitted:false
+      submitted: false,
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -37,36 +43,18 @@ export default class NewPost extends React.Component {
     const dateObj = new Date();
     const currentDate = dateObj.toString();
 
-    this.handlePost(this.state.title, this.state.body, currentDate);
+    this.props.handlePost(this.state.title, this.state.body, currentDate);
 
-      this.setState({
-        submitted: true
-      })
+    this.setState({
+      submitted: true,
+    });
   }
 
-  handlePost(title, body, date) {
-    axios.post('http://localhost:4000/newpost', {
-      title,
-      body,
-      author: this.state.author,
-      date,
-
-    })
-      .then((response) => {
-
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-
-  }
 
   render() {
     return (
       <Layout>
-        { this.state.submitted && <Redirect to='/dashboard' />}
+        { this.state.submitted && <Redirect to="/dashboard" />}
         <section className="form-wrapper" id="post-form">
 
           <form className="new-post" onSubmit={this.handleSubmit}>
@@ -116,3 +104,4 @@ export default class NewPost extends React.Component {
 }
 
 NewPost = Radium(NewPost);
+export default connect(null, mapDispatchToProps)(NewPost);

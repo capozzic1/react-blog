@@ -6,6 +6,7 @@ const router = express.Router();
 router.post('/', (req, res) => {
   // console.log(typeof req.body);
   const postInfo = req.body;
+  console.log(postInfo);
   const newPost = new Post({ title: postInfo.title,
     author: postInfo.author,
     body: postInfo.body,
