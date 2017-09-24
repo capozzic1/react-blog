@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../redux/actions/signUpActions';
 
+
 const mapDispatchToProps = dispatch => ({
   login: (userData) => {
     dispatch(login(userData));
@@ -24,6 +25,7 @@ class LoginPage extends React.Component {
         <div className="login-wrap">
           <LoginForm login={this.props.login} />
         </div>
+        
       </Layout>
     );
   }
