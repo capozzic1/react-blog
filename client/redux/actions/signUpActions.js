@@ -28,6 +28,10 @@ export const login = userData => (dispatch) => {
   dispatch({ type: 'AUTHENTICATED_YES', payload: true });
 };
 
+export const dashLogged = () => (dispatch) => {
+    dispatch({ type: 'AUTHENTICATED_YES', payload: true });
+}
+
 export const logout = () => (dispatch) => {
   axios.get('/api/logout')
     .then((response) => {

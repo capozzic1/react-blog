@@ -2,8 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import Layout from '../../components/Layout/Layout';
 import Radium, { Style } from 'radium';
+import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
 
-export default class NewPost extends React.Component {
+class NewPost extends React.Component {
   constructor() {
     super();
 
@@ -11,6 +13,7 @@ export default class NewPost extends React.Component {
       title: '',
       author: 'capozzic',
       body: '',
+      submitted:false
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -35,6 +38,10 @@ export default class NewPost extends React.Component {
     const currentDate = dateObj.toString();
 
     this.handlePost(this.state.title, this.state.body, currentDate);
+
+      this.setState({
+        submitted: true
+      })
   }
 
   handlePost(title, body, date) {
@@ -46,16 +53,20 @@ export default class NewPost extends React.Component {
 
     })
       .then((response) => {
+
         console.log(response);
       })
       .catch((error) => {
         console.log(error);
       });
+
+
   }
 
   render() {
     return (
       <Layout>
+        { this.state.submitted && <Redirect to='/dashboard' />}
         <section className="form-wrapper" id="post-form">
 
           <form className="new-post" onSubmit={this.handleSubmit}>
@@ -105,3 +116,5 @@ export default class NewPost extends React.Component {
 }
 
 NewPost = Radium(NewPost);
+
+export default connect()(NewPost);
