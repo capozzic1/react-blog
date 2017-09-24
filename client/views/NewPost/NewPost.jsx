@@ -5,7 +5,7 @@ import Radium, { Style } from 'radium';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 
-class NewPost extends React.Component {
+export default class NewPost extends React.Component {
   constructor() {
     super();
 
@@ -116,5 +116,3 @@ class NewPost extends React.Component {
 }
 
 NewPost = Radium(NewPost);
-
-export default connect()(NewPost);
