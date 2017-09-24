@@ -5,9 +5,8 @@
   "main": "./index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --compilers jsx:babel-register test/helpers/setup.js  */*/*.spec.jsx -w",
-    "dev-client": "webpack-dev-server --hot --watch",
     "dev-server": "node server/server.js",
-    "start": "concurrently \"npm run dev-client\" \"npm run dev-server\""
+    "build":"webpack --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
