@@ -25,7 +25,7 @@ class LoginPage extends React.Component {
         <div className="login-wrap">
           <LoginForm login={this.props.login} />
         </div>
-        
+
       </Layout>
     );
   }

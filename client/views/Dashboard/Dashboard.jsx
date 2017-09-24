@@ -181,6 +181,7 @@ class Dashboard extends React.Component {
               sendChanges={this.props.sendChanges}
               currPost={this.props.currPost}
               handleSave={this.props.handleSave}
+              fetchPosts={this.props.fetchPosts}
             />
           ) : (
             <div className="dash-container" style={styles.dashContainer}>

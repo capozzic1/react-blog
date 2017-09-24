@@ -4,6 +4,7 @@ import Layout from '../../components/Layout/Layout';
 import Radium, { Style } from 'radium';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import { newPost } from '../../redux/actions/postActions';
 
 const mapDispatchToProps = dispatch => ({
@@ -11,6 +12,19 @@ const mapDispatchToProps = dispatch => ({
     dispatch(newPost(arg1, arg2, arg3));
   },
 });
+=======
+import { fetchPosts } from '../../redux/actions/postActions';
+import createHistory from 'history/createBrowserHistory';
+
+const history = createHistory();
+
+const mapDispatchToProps = dispatch => ({
+  fetchPosts: () => {
+    dispatch(fetchPosts());
+  },
+});
+
+>>>>>>> production
 class NewPost extends React.Component {
   constructor(props) {
     super(props);
@@ -44,7 +58,7 @@ class NewPost extends React.Component {
     const currentDate = dateObj.toString();
 
     this.props.handlePost(this.state.title, this.state.body, currentDate);
-
+    this.props.fetchPosts();
     this.setState({
       submitted: true,
     });
@@ -54,7 +68,7 @@ class NewPost extends React.Component {
   render() {
     return (
       <Layout>
-        { this.state.submitted && <Redirect to="/dashboard" />}
+        { this.state.submitted && <Redirect push to="/dashboard" />}
         <section className="form-wrapper" id="post-form">
 
           <form className="new-post" onSubmit={this.handleSubmit}>

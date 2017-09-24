@@ -29,6 +29,7 @@ app.use(passport.initialize());
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 100000 } }));
 app.use(passport.session());
 
+
 // passport config
 const User = require('./models/user');
 
@@ -38,14 +39,15 @@ passport.deserializeUser(User.deserializeUser());
 // db connection
 mongoose.connect(config.database);
 
-app.use(webpackMiddleware(compiler, {
-  noInfo: true, publicPath: webpackConfig.output.publicPath,
-}));
+if (app.get('env') === 'development') {
+  app.use(webpackMiddleware(compiler, {
+    noInfo: true, publicPath: webpackConfig.output.publicPath,
+  }));
 
-app.use(webpackHotMiddleware(compiler, {
-  log: console.log,
-}));
-
+  app.use(webpackHotMiddleware(compiler, {
+    log: console.log,
+  }));
+}
 
 app.use(cors());
 // parse application/x-www-form-urlencoded
