@@ -17,7 +17,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const passport = require('passport');
 const session = require('express-session');
 
-const port = 4000;
+const port = process.env.PORT || 4000;
 const compiler = webpack(webpackConfig);
 const config = require('./config/main');
 const mongoose = require('mongoose');
