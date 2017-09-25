@@ -24,11 +24,12 @@ const mongoose = require('mongoose');
 const authRoutes = require('./routes/authroutes');
 const logger = require('morgan');
 const LocalStrategy = require('passport-local').Strategy;
+const compression = require('compression');
 
 app.use(passport.initialize());
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 100000 } }));
 app.use(passport.session());
-
+app.use(compression());
 
 // passport config
 const User = require('./models/user');
@@ -62,7 +63,7 @@ app.use('/posts', getposts);
 app.use('/delete', deleteposts);
 app.use('/edit', editposts);
 
-
+app.use(express.static('public'));
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });

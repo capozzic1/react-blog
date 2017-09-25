@@ -8,3 +8,9 @@ Features:
 - Update a post
 - Delete a post
 - Delete all posts
+
+
+Simple authorization system utilizing passport-local-mongoose:
+-Register
+-Login
+-Log out
