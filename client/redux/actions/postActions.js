@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 export const fetchPosts = () => function (dispatch) {
   dispatch({ type: 'FETCH_POSTS' });
 
-  return axios.get('http://localhost:4000/posts')
+  return axios.get('/posts')
     .then((response) => {
       dispatch({ type: 'FETCH_POSTS_FUFILLED', payload: response.data });
     })
@@ -15,7 +15,7 @@ export const fetchPosts = () => function (dispatch) {
 };
 
 export const deletePosts = (posts, cb) => function (dispatch) {
-  axios.delete('http://localhost:4000/delete', { data: posts })
+  axios.delete('/delete', { data: posts })
 
     .then((response) => {
       dispatch({ type: 'DELETE_POSTS_FUFILLED', payload: response.data });
@@ -24,7 +24,7 @@ export const deletePosts = (posts, cb) => function (dispatch) {
 
 
 export const newPost = (title, body, date) => function (dispatch) {
-  return axios.post('http://localhost:4000/newpost', {
+  return axios.post('/newpost', {
     title,
     body,
     author: 'capozzic',

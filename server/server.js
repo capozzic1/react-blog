@@ -17,7 +17,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const passport = require('passport');
 const session = require('express-session');
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 const compiler = webpack(webpackConfig);
 const config = require('./config/main');
 const mongoose = require('mongoose');
@@ -70,5 +70,7 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-http.createServer(app).listen(port);
-https.createServer(app).listen(port);
+
+http.createServer(app).listen(port, () => {
+  console.log(`listening on port ${port}`);
+});
