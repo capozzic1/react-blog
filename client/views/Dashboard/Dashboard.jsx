@@ -101,6 +101,7 @@ class Dashboard extends React.Component {
     this.fetchPosts();
   }
 
+
   handleClick(e) {
     // get the post id that was clicked on
     e.preventDefault();

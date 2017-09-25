@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+const fetch = require('node-fetch');
+
 export const fetchPosts = () => function (dispatch) {
   dispatch({ type: 'FETCH_POSTS' });
 
-  axios.get('http://localhost:4000/posts')
+  return axios.get('http://localhost:4000/posts')
     .then((response) => {
       dispatch({ type: 'FETCH_POSTS_FUFILLED', payload: response.data });
     })
@@ -22,7 +24,7 @@ export const deletePosts = (posts, cb) => function (dispatch) {
 
 
 export const newPost = (title, body, date) => function (dispatch) {
-  axios.post('http://localhost:4000/newpost', {
+  return axios.post('http://localhost:4000/newpost', {
     title,
     body,
     author: 'capozzic',
@@ -32,9 +34,6 @@ export const newPost = (title, body, date) => function (dispatch) {
     .then((response) => {
       dispatch({ type: 'NEW_POST', payload: response.data });
       console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
     });
 };
 

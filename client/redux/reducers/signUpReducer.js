@@ -34,6 +34,12 @@ export default function reducer(state = {
         loggedIn: true,
       };
     }
+    case 'AUTHENTICATED_NO': {
+      return {
+        ...state,
+        loggedIn: false,
+      };
+    }
 
     case 'LOGGED_OUT': {
       return {

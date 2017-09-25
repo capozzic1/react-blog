@@ -49,10 +49,12 @@ render(){
     <div className="nav-link-wrap" style={styles.navLinkWrap}>
       <RadiumLink to="/"  className="nav-link" style={styles.navlink}>Lucid Web Dream</RadiumLink>
       <RadiumLink to="/"  className="nav-link" style={styles.navlink}>Blog home</RadiumLink>
+
       {this.props.loggedIn && <button onClick={this.props.logout}>Logout</button>}
+      {this.props.loggedIn &&  <RadiumLink to="/dashboard"  className="nav-link" style={styles.navlink}>Dashboard</RadiumLink>}
     </div>
 
-
+    
     <Style
       scopeSelector=".nav-link"
       rules={{

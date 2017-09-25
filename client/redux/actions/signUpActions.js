@@ -18,19 +18,19 @@ export const signUp = userData => (dispatch) => {
 
 export const login = userData => (dispatch) => {
   axios.post('/api/login', userData)
-    .then(() => {
+    .then((response) => {
+      dispatch({ type: 'AUTHENTICATED_YES', payload: true });
       console.log(response);
     })
     .catch((error) => {
+      dispatch({ type: 'AUTHENTICATED_NO', payload: false });
       console.log(error.response);
     });
-
-  dispatch({ type: 'AUTHENTICATED_YES', payload: true });
 };
 
 export const dashLogged = () => (dispatch) => {
-    dispatch({ type: 'AUTHENTICATED_YES', payload: true });
-}
+  dispatch({ type: 'AUTHENTICATED_YES', payload: true });
+};
 
 export const logout = () => (dispatch) => {
   axios.get('/api/logout')
