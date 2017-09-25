@@ -25,6 +25,8 @@ const authRoutes = require('./routes/authroutes');
 const logger = require('morgan');
 const LocalStrategy = require('passport-local').Strategy;
 const compression = require('compression');
+const https = require('https');
+const http = require('http');
 
 app.use(passport.initialize());
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 100000 } }));
@@ -68,6 +70,5 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
+http.createServer(app).listen(port);
+https.createServer(app).listen(port);
