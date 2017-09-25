@@ -1,4 +1,3 @@
-To run, first npm install the dependencies, then npm run dev-server
 
 This is a blog made with React/Redux for the front end and state management, Radium
 for styling the CSS, and MongoDB for storing the posts. It sits on an Express server.
@@ -16,9 +15,9 @@ Simple authorization system utilizing passport-local-mongoose:
 -Log out
 
 Demo site: https://reactreduxblogcc.herokuapp.com
-user demo credentials:
-- user: test@21.com,
-- pw: test
+- user demo credentials:
+  - user: test@21.com,
+  - pw: test
 
 
 It uses react router for the routes. There routes are at:
