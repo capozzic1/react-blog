@@ -14,3 +14,17 @@ Simple authorization system utilizing passport-local-mongoose:
 -Register
 -Login
 -Log out
+
+Demo site: https://reactreduxblogcc.herokuapp.com
+user demo credentials:
+user: test@21.com,
+pw: test
+
+
+It uses react router for the routes. There routes are at:
+/  for the list of posts
+/login for logging in
+/signup
+/dashboard for edit/delete/new post/ delete all controls
+/single for single view of a post
+/newpost for creation of a new post
