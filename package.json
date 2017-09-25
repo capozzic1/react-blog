@@ -7,7 +7,7 @@
     "test": "mocha --compilers js:babel-core/register --compilers jsx:babel-register test/helpers/setup.js  */*/*.spec.jsx -w",
     "dev-server": "cross-env NODE_ENV=development node server/server.js",
     "build": "webpack --config webpack.prod.js",
-    "start": "cross-env NODE_ENV=production ./node_modules/.bin/pm2 start server/server.js -i -max --attach"
+    "start": "./node_modules/.bin/pm2 start server/server.js -i -max --attach"
   },
   "repository": {
     "type": "git",
