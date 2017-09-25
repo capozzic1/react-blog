@@ -36,7 +36,7 @@ let SinglePost = (props) => {
         rules={{
 
 
-          '.post-title, .post-author' : { height: '7px' },
+          '.post-title, .post-author' : { },
           '.post-title, .post-author, .post-date, .post-body':
           {
             left: '10px',
