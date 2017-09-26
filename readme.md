@@ -10,9 +10,9 @@ Features:
 
 
 Simple authorization system utilizing passport-local-mongoose:
--Register
--Login
--Log out
+- Register
+- Login
+- Log out
 
 Demo site: https://reactreduxblogcc.herokuapp.com
 - user demo credentials:
