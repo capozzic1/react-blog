@@ -47,12 +47,18 @@ const clientConfig = {
 
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
     new CleanWebpackPlugin(['public']),
     new HtmlWebpackPlugin({
       title: 'A react-redux blog',
       template: 'index.html',
     }),
     new UglifyJSPlugin(),
+
   ],
 };
 
