@@ -14,6 +14,7 @@ import createHistory from 'history/createBrowserHistory';
 import EditModal from '../../components/EditModal/EditModal';
 import DashButtons from '../../components/DashButtons/DashButtons';
 import Radium, { Style } from 'radium';
+import SinglePost from '../SinglePost/SinglePost';
 
 
 const history = createHistory();
@@ -25,6 +26,7 @@ const mapStateToProps = state => ({
   edit: state.posts.edit,
   editPostId: state.posts.editPostId,
   checked: state.posts.boxChecked,
+  redirect: state.posts.redirect,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -106,8 +108,8 @@ class Dashboard extends React.Component {
     // get the post id that was clicked on
     e.preventDefault();
     const postId = e.target.className;
-    this.props.changeRedirect();
     this.props.findSinglePost(postId);
+    this.props.changeRedirect();
   }
 
 
@@ -153,7 +155,7 @@ class Dashboard extends React.Component {
     this.confirmDelete('all');
   }
 
-  render() {
+  conditionalRender() {
     const posts = this.props.posts;
     // console.log(posts);
     const rows = posts.map(post =>
@@ -164,54 +166,61 @@ class Dashboard extends React.Component {
         <td>{post.date}</td>
       </tr>));
 
-    if (this.props.redirect === true) {
-      history.push('/single', { info: this.props.currPost });
-      history.go('/single');
+
+    if (this.props.redirect) {
+      return (
+        <SinglePost
+          currPost={this.props.currPost}
+          changeRedirect={this.props.changeRedirect}
+        />
+      );
+    } else if (this.props.edit) {
+      return (
+        <EditModal
+          post={[...this.props.editPostId]}
+          sendEdit={this.props.sendEdit}
+          posts={this.props.posts}
+          sendChanges={this.props.sendChanges}
+          currPost={this.props.currPost}
+          handleSave={this.props.handleSave}
+          fetchPosts={this.props.fetchPosts}
+        />
+      );
     }
 
+    return (
+      <div className="dash-wrap">
+        <DashButtons
+          handleEdit={this.handleEdit}
+          confirmDelete={this.confirmDelete}
+          deleteAll={this.deleteAll}
+        />
+        <table style={styles.table}>
+          <tbody>
+            <tr className="row-headers" style={styles.rowHeaders}>
+              <th>Check</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Date</th>
 
+            </tr>
+
+            {rows}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+
+
+  render() {
     return (
       <Layout>
 
-        {
-          this.props.edit ? (
-            <EditModal
-              post={[...this.props.editPostId]}
-              sendEdit={this.props.sendEdit}
-              posts={this.props.posts}
-              sendChanges={this.props.sendChanges}
-              currPost={this.props.currPost}
-              handleSave={this.props.handleSave}
-              fetchPosts={this.props.fetchPosts}
-            />
-          ) : (
-            <div className="dash-container" style={styles.dashContainer}>
+        <div className="dash-container" style={styles.dashContainer}>
 
-
-              <DashButtons
-                handleEdit={this.handleEdit}
-                confirmDelete={this.confirmDelete}
-                deleteAll={this.deleteAll}
-              />
-              <table style={styles.table}>
-                <tbody>
-                  <tr className="row-headers" style={styles.rowHeaders}>
-                    <th>Check</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Date</th>
-
-                  </tr>
-
-                  {rows}
-                </tbody>
-              </table>
-
-            </div>
-
-          )
-
-        }
+          { this.props.posts.length > 0 && this.conditionalRender() }
+        </div>
 
         <Style
           scopeSelector="table"

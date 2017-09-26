@@ -2,6 +2,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Radium, { Style } from 'radium';
+import { connect } from 'react-redux';
+import { changeRedirect } from '../../redux/actions/postActions';
 
 const color = require('color');
 /* eslint-disable */
@@ -36,11 +38,22 @@ var styles = {
 
 };
 
+const mapDispatchToProps = dispatch => ({
 
+  changeRedirect: () => {
+    dispatch(changeRedirect());
+  },
+});
 
 class Navigation extends React.Component {
 constructor(props){
   super(props)
+
+  this.changeRedirect = this.changeRedirect.bind(this);
+}
+
+changeRedirect(){
+this.props.changeRedirect();
 }
 
 render(){
@@ -48,13 +61,14 @@ render(){
   <nav style={styles.nav}>
     <div className="nav-link-wrap" style={styles.navLinkWrap}>
       <RadiumLink to="/"  className="nav-link" style={styles.navlink}>Lucid Web Dream</RadiumLink>
-      <RadiumLink to="/"  className="nav-link" style={styles.navlink}>Blog home</RadiumLink>
-
+      <RadiumLink to="/"  className="nav-link" style={styles.navlink} onClick={this.changeRedirect} >Blog home</RadiumLink>
+      {!this.props.loggedIn &&
+        <RadiumLink to="/login"  className="nav-link" style={styles.navlink} >Login</RadiumLink>}
       {this.props.loggedIn && <button onClick={this.props.logout}>Logout</button>}
-      {this.props.loggedIn &&  <RadiumLink to="/dashboard"  className="nav-link" style={styles.navlink}>Dashboard</RadiumLink>}
+      {this.props.loggedIn &&  <RadiumLink to="/dashboard"  className="nav-link" style={styles.navlink} onClick={this.changeRedirect}>Dashboard</RadiumLink>}
     </div>
 
-    
+
     <Style
       scopeSelector=".nav-link"
       rules={{
@@ -74,4 +88,4 @@ let RadiumLink = Radium(Link);
 Navigation = Radium(Navigation);
 
 
-export default Navigation;
+export default connect(null, mapDispatchToProps)(Navigation);

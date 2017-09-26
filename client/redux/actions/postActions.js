@@ -46,7 +46,7 @@ export const sendEdit = editStatus => function (dispatch) {
 };
 
 export const handleSave = changes => function (dispatch) {
-  axios.put('http://localhost:4000/edit', { data: changes })
+  axios.put('/edit', { data: changes })
 
     .then((response) => {
       dispatch({ type: 'EDITED_POST', payload: response.data });

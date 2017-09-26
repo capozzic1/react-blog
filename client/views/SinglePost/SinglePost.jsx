@@ -15,12 +15,17 @@ const styles = {
 
 }
 
-let SinglePost = (props) => {
-  const post = props.location.state.info;
+class SinglePost extends React.Component {
+  constructor(props){
+    super(props)
+  }
 
 
+
+render(){
+    const post  = this.props.currPost;
   return (
-    <Layout>
+
       <div className="single-post" style={styles.singlePost}>
         <div className="titleAuthor">
           <h2 className="post-title">{post.title}</h2>
@@ -30,43 +35,45 @@ let SinglePost = (props) => {
           <h3 className="post-date">Date: {post.date}</h3>
         </div>
         <p className="post-body">{post.body}</p>
-      </div>
-      <Style
-        scopingSelector = '.single-post'
-        rules={{
+
+        <Style
+          scopingSelector = '.single-post'
+          rules={{
 
 
-          '.post-title, .post-author' : { },
-          '.post-title, .post-author, .post-date, .post-body':
-          {
-            left: '10px',
-            position:'relative',
+            '.post-title, .post-author' : { },
+            '.post-title, .post-author, .post-date, .post-body':
+            {
+              left: '10px',
+              position:'relative',
 
-          },
-
-          mediaQueries:{
-            '(min-width:425px)': {
-              '.postDate':{
-                float:'right',
-                position:'relative',
-                bottom:'4em',
-                textAlign:'right',
-                right:'2em'
-              },
-              '.titleAuthor, .postDate':{
-                width:'50%'
-              },
-              '.single-post':{
-                width: '35em',
-                margin: '0 auto'
-              }
             },
 
-          }
-        }}
-      />
-        </Layout>
+            mediaQueries:{
+              '(min-width:425px)': {
+                '.postDate':{
+                  float:'right',
+                  position:'relative',
+                  bottom:'4em',
+                  textAlign:'right',
+                  right:'2em'
+                },
+                '.titleAuthor, .postDate':{
+                  width:'50%'
+                },
+                '.single-post':{
+                  width: '35em',
+                  margin: '0 auto'
+                }
+              },
+
+            }
+          }}
+        />
+      </div>
+
   );
+}
 };
 
 SinglePost = Radium(SinglePost);

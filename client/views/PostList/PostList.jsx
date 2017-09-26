@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { findSinglePost, changeRedirect } from '../../redux/actions/postActions';
 import createHistory from 'history/createBrowserHistory';
 import { Alert } from 'react-bootstrap';
-import { closeAlert } from '../../redux/actions/signUpActions';
+
 import Radium, { Style } from 'radium';
+import { Redirect } from 'react-router-dom';
+import SinglePost from '../SinglePost/SinglePost';
 
 const history = createHistory();
 
@@ -19,11 +21,8 @@ const mapDispatchToProps = dispatch => ({
   findSinglePost: (postId) => {
     dispatch(findSinglePost(postId));
   },
-  closeAlert: () => {
-    dispatch(closeAlert());
-  },
-  changeRedirect: () => {
-    dispatch(changeRedirect());
+  changeRedirect: (bool) => {
+    dispatch(changeRedirect(bool));
   },
 });
 
@@ -62,6 +61,7 @@ class PostList extends React.Component {
   get the className, compare it to all of the posts,
   find the post, send the post to the single view
   */
+
   handleClick(e) {
     // get the post id that was clicked on
     e.preventDefault();
@@ -91,19 +91,28 @@ class PostList extends React.Component {
       </div>
     ));
 
-    if (this.props.redirect === true) {
-      history.push('/single', { info: this.props.currPost });
-      history.go('/single');
-    }
+
+      // history.push('/single', { info: this.props.currPost });
+    //  history.go('/single');
+
+    const { redirect } = this.props;
 
     return (
-      <div className="post-container" style={styles.postContainer}>
-        { signedUp &&
-          (<Alert bsStyle="success" onDismiss={this.handleDismiss}>Success! You have successfully signed up. </Alert>)
-        }
-        {postDivs}
-        <Style
 
+      <div className="post-container" style={styles.postContainer}>
+        {
+          redirect ? (<SinglePost
+            currPost={this.props.currPost}
+            changeRedirect={this.props.changeRedirect}
+          />
+          ) : (
+            <div>
+              {postDivs}
+
+            </div>
+          ) }
+        <Style
+          scopingSelector=".post-container"
           rules={{
             mediaQueries: {
               '(min-width: 550px)': {
@@ -119,6 +128,7 @@ class PostList extends React.Component {
     );
   }
 }
+
 
 PostList = Radium(PostList);
 

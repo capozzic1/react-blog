@@ -52,7 +52,7 @@ export default function reducer(state = {
         }
     }
     case 'CHANGE_REDIRECT_STATUS': {
-      return { ...state, redirect: true };
+      return { ...state, redirect: !state.redirect };
     }
 
     case 'CHANGE_EDIT_STATUS': {
