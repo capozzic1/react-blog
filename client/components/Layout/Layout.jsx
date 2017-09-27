@@ -28,6 +28,11 @@ class Layout extends React.Component {
             a: { textDecoration: 'none' },
             'a, h1, h2, th, label': { fontFamily: 'Merriweather, serif' },
             'p, td, button': { fontFamily: 'Open Sans, sans-serif' },
+            p: {
+              width: '70%',
+              margin: '0 auto',
+              textAlign: 'left',
+            },
           }}
         />
       </div>
