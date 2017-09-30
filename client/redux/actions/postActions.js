@@ -27,7 +27,7 @@ export const newPost = (title, body, date) => function (dispatch) {
   return axios.post('/newpost', {
     title,
     body,
-    author: 'capozzic',
+    author: 'testUser',
     date,
 
   })

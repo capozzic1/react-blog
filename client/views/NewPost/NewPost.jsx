@@ -24,7 +24,7 @@ class NewPost extends React.Component {
 
     this.state = {
       title: '',
-      author: 'capozzic',
+      author: 'testUser',
       body: '',
       submitted: false,
     };
