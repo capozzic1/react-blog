@@ -55,8 +55,8 @@ export const handleSave = changes => function (dispatch) {
 
 export const load = data => ({ type: 'LOAD', payload: data });
 
-export const changeRedirect = () => function (dispatch) {
-  dispatch({ type: 'CHANGE_REDIRECT_STATUS' });
+export const changeRedirect = bool => function (dispatch) {
+  dispatch({ type: 'CHANGE_REDIRECT_STATUS', payload: bool });
 };
 
 export const checkBoxChange = postId => function (dispatch) {

@@ -51,8 +51,11 @@ export default function reducer(state = {
           }
         }
     }
+
     case 'CHANGE_REDIRECT_STATUS': {
-      return { ...state, redirect: !state.redirect };
+      const bool = action.payload !== 'false';
+
+      return { ...state, redirect: bool };
     }
 
     case 'CHANGE_EDIT_STATUS': {

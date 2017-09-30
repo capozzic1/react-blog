@@ -40,8 +40,8 @@ var styles = {
 
 const mapDispatchToProps = dispatch => ({
 
-  changeRedirect: () => {
-    dispatch(changeRedirect());
+  changeRedirect: (str) => {
+    dispatch(changeRedirect(str));
   },
 });
 
@@ -53,7 +53,7 @@ constructor(props){
 }
 
 changeRedirect(){
-this.props.changeRedirect();
+this.props.changeRedirect('false');
 }
 
 render(){
