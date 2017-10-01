@@ -52,7 +52,7 @@ const clientConfig = {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-    new CleanWebpackPlugin(['public']),
+    new CleanWebpackPlugin(['public'], { exclude: ['images']}),
     new HtmlWebpackPlugin({
       title: 'A react-redux blog',
       template: 'index.html',

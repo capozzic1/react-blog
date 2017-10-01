@@ -11,20 +11,21 @@ const color = require('color');
 var styles = {
   nav: {
     position: 'relative',
-    background: 'aliceblue',
-    boxShadow: '10px 5px 3px #888888',
+
+
     width: '100%',
     height: '5em',
 
   },
   navlink: {
     display:'inline-block',
+    color: 'whitesmoke',
 
 
     ':hover': {
       textDecoration: 'none',
       background: '#cccccc',
-      color: 'white',
+      color: 'darkgreen',
 
     }
   },

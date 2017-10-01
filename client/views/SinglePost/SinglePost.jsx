@@ -9,7 +9,7 @@ const styles = {
   singlePost : {
     border: '1px solid black',
     position:'relative',
-    top:'3em',
+    background:'white',
         minHeight: '300px'
   }
 
@@ -25,7 +25,7 @@ class SinglePost extends React.Component {
 render(){
     const post  = this.props.currPost;
   return (
-
+    <div className="single-wrap">
       <div className="single-post" style={styles.singlePost}>
         <div className="titleAuthor">
           <h2 className="post-title">{post.title}</h2>
@@ -37,10 +37,12 @@ render(){
         <p className="post-body">{post.body}</p>
 
         <Style
-          scopingSelector = '.single-post'
+          scopingSelector = '.single-wrap'
           rules={{
 
-
+            '.single-wrap':{
+              height: '100vw'
+            },
             '.post-title, .post-author' : { },
             '.post-title, .post-author, .post-date, .post-body':
             {
@@ -71,6 +73,7 @@ render(){
           }}
         />
       </div>
+    </div>
 
   );
 }

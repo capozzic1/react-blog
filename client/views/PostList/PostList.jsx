@@ -32,10 +32,11 @@ const styles = {
     paddingLeft: '10px',
     minHeight: '230px',
     marginTop: '15px',
+    background: 'whitesmoke',
   },
   postContainer: {
     position: 'relative',
-    top: '22px',
+
   },
   postDetails: {
     position: 'relative',

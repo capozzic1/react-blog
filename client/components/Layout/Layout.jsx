@@ -14,12 +14,20 @@ const mapDispatchToProps = dispatch => ({
     dispatch(logout());
   },
 });
+
+const styles = {
+  container: {
+    background: 'black',
+    backgroundImage: 'url(images/northern.jpg)',
+    backgroundRepeat: 'no-repeat',
+  },
+};
 class Layout extends React.Component {
   render() {
     // console.log(this.props.posts);
     return (
 
-      <div className="container">
+      <div className="container" style={styles.container}>
         <Navigation loggedIn={this.props.loggedIn} logout={this.props.logout} />
         {this.props.children}
         <Style
@@ -33,6 +41,7 @@ class Layout extends React.Component {
               margin: '0 auto',
               textAlign: 'left',
             },
+
           }}
         />
       </div>
