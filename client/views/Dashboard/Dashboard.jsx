@@ -65,7 +65,8 @@ const styles = {
     width: '45em',
     margin: '0 auto',
     position: 'relative',
-    top: '3em',
+
+
   },
   btnTableWrap: {
     width: '50%',
@@ -78,6 +79,7 @@ const styles = {
     width: '40em',
     textAlign: 'center',
     borderCollapse: 'collapse',
+    background: 'white',
   },
   rowHeaders: {
     fontSize: '1.5em',
@@ -85,7 +87,13 @@ const styles = {
   postRows: {
     fontSize: '20px',
   },
+  dashWrap: {
+    position: 'relative',
+    top: '5em',
+  },
 };
+
+
 class Dashboard extends React.Component {
   constructor() {
     super();
@@ -189,7 +197,7 @@ class Dashboard extends React.Component {
     }
 
     return (
-      <div className="dash-wrap">
+      <div className="dash-wrap" style={styles.dashWrap}>
         <DashButtons
           handleEdit={this.handleEdit}
           confirmDelete={this.confirmDelete}

@@ -63,6 +63,9 @@ class LoginForm extends React.Component {
       <Style
         scopingSelector=".login-wrap"
         rules={{
+          '.login-wrap':{
+            height: '100vw'
+          },
           form: {
             margin: '0 auto',
             position: 'relative',
@@ -70,6 +73,8 @@ class LoginForm extends React.Component {
             top: '3em',
             border: '1px solid lightblue',
             padding: '20px',
+            color: 'whitesmoke',
+            fontSize: '20px',
           },
           'form input': {
             padding: '6px'
