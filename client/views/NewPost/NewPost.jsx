@@ -17,7 +17,11 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-
+const styles = {
+  formWrap: {
+    height: '100vw',
+  },
+};
 class NewPost extends React.Component {
   constructor(props) {
     super(props);
@@ -63,7 +67,7 @@ class NewPost extends React.Component {
     return (
       <Layout>
         { this.state.submitted && <Redirect push to="/dashboard" />}
-        <section className="form-wrapper" id="post-form">
+        <section className="form-wrapper" id="post-form" style={styles.formWrap}>
 
           <form className="new-post" onSubmit={this.handleSubmit}>
             <h2>New Post</h2>
@@ -84,6 +88,7 @@ class NewPost extends React.Component {
         <Style
           scopeSelector=".form-wrapper"
           rules={{
+
             'input, textarea': {
               width: '20em',
               padding: '10px',
@@ -95,6 +100,7 @@ class NewPost extends React.Component {
             '.new-post': {
               margin: '0 auto',
               width: '40em',
+              color: 'whitesmoke',
             },
             '.sub-button': {
               background: 'skyblue',

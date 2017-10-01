@@ -26,7 +26,7 @@ const AllRoutes = ({ loggedIn }) => (
   <BrowserRouter history={history}>
     <div>
       <Route exact path="/" component={Home} />
-      <Route path="/newpost" component={NewPost} />
+      <PrivateRoute path="/newpost" component={NewPost} loggedIn={loggedIn} />
       <Route path="/single" component={SinglePost} />
 
       <PrivateRoute path="/dashboard" component={Dashboard} loggedIn={loggedIn} />

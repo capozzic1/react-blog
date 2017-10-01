@@ -65,7 +65,7 @@ const styles = {
     width: '45em',
     margin: '0 auto',
     position: 'relative',
-
+    height: '100vw',
 
   },
   btnTableWrap: {
