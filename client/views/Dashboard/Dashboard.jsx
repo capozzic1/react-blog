@@ -227,7 +227,7 @@ class Dashboard extends React.Component {
 
         <div className="dash-container" style={styles.dashContainer}>
 
-          { this.props.posts.length > 0 && this.conditionalRender() }
+          { this.props.posts.length >= 0 && this.conditionalRender() }
         </div>
 
         <Style

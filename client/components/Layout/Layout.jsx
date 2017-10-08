@@ -20,6 +20,7 @@ const styles = {
     background: 'black',
     backgroundImage: 'url(images/northern.jpg)',
     backgroundRepeat: 'no-repeat',
+    height: '100vw',
 
   },
 };
