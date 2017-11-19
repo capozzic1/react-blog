@@ -1,32 +1,17 @@
-
-
 import React from 'react';
 import Layout from '../../components/Layout/Layout';
-import Radium, { Style } from 'radium';
+
 /* eslint-disable */
 
-const styles = {
-  singlePost : {
-    border: '1px solid black',
-    position:'relative',
-    background:'white',
-        minHeight: '300px'
-  }
-
-}
-
 class SinglePost extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
   }
 
-
-
-render(){
-    const post  = this.props.currPost;
-  return (
-    <div className="single-wrap">
-      <div className="single-post" style={styles.singlePost}>
+  render() {
+    const post = this.props.currPost;
+    return (<div className="single-wrap">
+      <div className="single-post">
         <div className="titleAuthor">
           <h2 className="post-title">{post.title}</h2>
           <h3 className="post-author">Posted by: {post.author}</h3>
@@ -36,48 +21,9 @@ render(){
         </div>
         <p className="post-body">{post.body}</p>
 
-        <Style
-          scopingSelector = '.single-wrap'
-          rules={{
-
-            '.single-wrap':{
-              height: '100vw'
-            },
-            '.post-title, .post-author' : { },
-            '.post-title, .post-author, .post-date, .post-body':
-            {
-              left: '10px',
-              position:'relative',
-
-            },
-
-            mediaQueries:{
-              '(min-width:425px)': {
-                '.postDate':{
-                  float:'right',
-                  position:'relative',
-                  bottom:'4em',
-                  textAlign:'right',
-                  right:'2em'
-                },
-                '.titleAuthor, .postDate':{
-                  width:'50%'
-                },
-                '.single-post':{
-                  width: '35em',
-                  margin: '0 auto'
-                }
-              },
-
-            }
-          }}
-        />
       </div>
-    </div>
-
-  );
-}
+    </div>);
+  }
 };
 
-SinglePost = Radium(SinglePost);
 export default SinglePost;

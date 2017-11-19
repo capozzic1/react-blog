@@ -5,9 +5,7 @@ import { signUp, addFlashMessage } from '../../redux/actions/signUpActions';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-const mapStateToProps = state => ({
-  signupRedirect: state.signup.signupRedirect,
-});
+const mapStateToProps = state => ({ signupRedirect: state.signup.signupRedirect });
 
 const mapDispatchToProps = dispatch => ({
   signup: (user) => {
@@ -18,7 +16,6 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -28,10 +25,7 @@ class SignUp extends React.Component {
     console.log(nextProps);
 
     if (nextProps.signupRedirect) {
-      this.props.addFlashMessage({
-        type: 'success',
-        text: 'You signed up successfully. Welcome!',
-      });
+      this.props.addFlashMessage({ type: 'success', text: 'You signed up successfully. Welcome!' });
       this.props.history.push('/login');
 
       // <Redirect to="/" />;
@@ -39,11 +33,9 @@ class SignUp extends React.Component {
   }
 
   render() {
-    return (
-      <Layout>
-        <SignUpForm signup={this.props.signup} />;
-      </Layout>
-    );
+    return (<Layout>
+      <SignUpForm signup={this.props.signup} />;
+    </Layout>);
   }
 }
 

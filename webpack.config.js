@@ -4,14 +4,14 @@ const webpack = require('webpack');
 // env
 const buildDirectory = 'public';
 
-
 const clientConfig = {
-  entry: ['webpack-hot-middleware/client?reload=true', './client/index.jsx'],
+  entry: [
+    'webpack-hot-middleware/client?reload=true', './client/index.jsx',
+  ],
   output: {
     path: path.resolve(buildDirectory),
     publicPath: '/',
     filename: 'app.js',
-
   },
 
   externals: {
@@ -28,27 +28,33 @@ const clientConfig = {
         options: {
           presets: ['react', 'es2015', 'airbnb', 'stage-0'],
         },
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg)$/i,
+      }, {
+        test: /\.(scss|css)$/,
         use: [
-          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false',
+          {
+            loader: 'style-loader',
+          }, {
 
+            loader: 'css-loader',
+          }, {
+            loader: 'sass-loader',
+          },
+        ],
+      }, {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: 'url-loader',
+          },
         ],
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.json'],
   },
 
-
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-  ],
+  plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NoEmitOnErrorsPlugin()],
 };
-
 
 module.exports = clientConfig;

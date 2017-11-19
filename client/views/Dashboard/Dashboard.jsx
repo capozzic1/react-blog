@@ -2,20 +2,22 @@ import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Layout from '../../components/Layout/Layout';
-import { fetchPosts, deletePosts,
+import {
+  fetchPosts,
+  deletePosts,
   findSinglePost,
   sendEdit,
   sendChanges,
   changeRedirect,
   checkBoxChange,
-  handleSave } from '../../redux/actions/postActions';
+  handleSave,
+} from '../../redux/actions/postActions';
 import { dashLogged } from '../../redux/actions/signUpActions';
 import createHistory from 'history/createBrowserHistory';
 import EditModal from '../../components/EditModal/EditModal';
 import DashButtons from '../../components/DashButtons/DashButtons';
-import Radium, { Style } from 'radium';
-import SinglePost from '../SinglePost/SinglePost';
 
+import SinglePost from '../SinglePost/SinglePost';
 
 const history = createHistory();
 
@@ -59,45 +61,9 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const styles = {
-  dashContainer: {
-
-    width: '45em',
-    margin: '0 auto',
-    position: 'relative',
-    height: '100vw',
-
-  },
-  btnTableWrap: {
-    width: '50%',
-    margin: '0 auto',
-  },
-  table: {
-    margin: '0 auto',
-    position: 'relative',
-    top: '2em',
-    width: '40em',
-    textAlign: 'center',
-    borderCollapse: 'collapse',
-    background: 'white',
-  },
-  rowHeaders: {
-    fontSize: '1.5em',
-  },
-  postRows: {
-    fontSize: '20px',
-  },
-  dashWrap: {
-    position: 'relative',
-    top: '5em',
-  },
-};
-
-
 class Dashboard extends React.Component {
   constructor() {
     super();
-
 
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -111,7 +77,6 @@ class Dashboard extends React.Component {
     this.fetchPosts();
   }
 
-
   handleClick(e) {
     // get the post id that was clicked on
     e.preventDefault();
@@ -119,7 +84,6 @@ class Dashboard extends React.Component {
     this.props.findSinglePost(postId);
     this.props.changeRedirect();
   }
-
 
   fetchPosts() {
     this.props.fetchPosts();
@@ -158,7 +122,6 @@ class Dashboard extends React.Component {
     this.props.deletePosts([...posts]);
   }
 
-
   deleteAll() {
     this.confirmDelete('all');
   }
@@ -166,85 +129,48 @@ class Dashboard extends React.Component {
   conditionalRender() {
     const posts = this.props.posts;
     // console.log(posts);
-    const rows = posts.map(post =>
-      (<tr key={post._id} style={styles.postRows}>
-        <td><input type="checkbox" onClick={this.handleChange} className={post._id} /></td>
-        <td><a href="" onClick={this.handleClick} className={post._id}>{post.title}</a></td>
-        <td>{post.author}</td>
-        <td>{post.date}</td>
-      </tr>));
-
+    const rows = posts.map(post => (<tr key={post._id}>
+      <td><input type="checkbox" onClick={this.handleChange} className={post._id} /></td>
+      <td>
+        <a href="" onClick={this.handleClick} className={post._id}>{post.title}</a>
+      </td>
+      <td>{post.author}</td>
+      <td>{post.date}</td>
+    </tr>));
 
     if (this.props.redirect) {
-      return (
-        <SinglePost
-          currPost={this.props.currPost}
-          changeRedirect={this.props.changeRedirect}
-        />
-      );
+      return (<SinglePost currPost={this.props.currPost} changeRedirect={this.props.changeRedirect} />);
     } else if (this.props.edit) {
-      return (
-        <EditModal
-          post={[...this.props.editPostId]}
-          sendEdit={this.props.sendEdit}
-          posts={this.props.posts}
-          sendChanges={this.props.sendChanges}
-          currPost={this.props.currPost}
-          handleSave={this.props.handleSave}
-          fetchPosts={this.props.fetchPosts}
-        />
-      );
+      return (<EditModal post={[...this.props.editPostId]} sendEdit={this.props.sendEdit} posts={this.props.posts} sendChanges={this.props.sendChanges} currPost={this.props.currPost} handleSave={this.props.handleSave} fetchPosts={this.props.fetchPosts} />);
     }
 
-    return (
-      <div className="dash-wrap" style={styles.dashWrap}>
-        <DashButtons
-          handleEdit={this.handleEdit}
-          confirmDelete={this.confirmDelete}
-          deleteAll={this.deleteAll}
-        />
-        <table style={styles.table}>
-          <tbody>
-            <tr className="row-headers" style={styles.rowHeaders}>
-              <th>Check</th>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Date</th>
+    return (<div className="dash-wrap">
+      <DashButtons handleEdit={this.handleEdit} confirmDelete={this.confirmDelete} deleteAll={this.deleteAll} />
+      <table >
+        <tbody>
+          <tr className="row-headers">
+            <th>Check</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Date</th>
 
-            </tr>
+          </tr>
 
-            {rows}
-          </tbody>
-        </table>
-      </div>
-    );
+          {rows}
+        </tbody>
+      </table>
+    </div>);
   }
 
-
   render() {
-    return (
-      <Layout>
+    return (<Layout>
 
-        <div className="dash-container" style={styles.dashContainer}>
+      <div className="dash-container">
 
-          { this.props.posts.length >= 0 && this.conditionalRender() }
-        </div>
+        {this.props.posts.length >= 0 && this.conditionalRender()}
+      </div>
 
-        <Style
-          scopeSelector="table"
-          rules={{
-            'table, td, th': {
-              border: '1px solid black' },
-            'tr:nth-child(even)': {
-              background: 'aliceblue',
-            },
-            '.row-headers': {
-              background: 'deepskyblue',
-            },
-          }}
-        />
-      </Layout>
-    );
+    </Layout>);
   }
 }
 
@@ -265,5 +191,4 @@ Dashboard.PropTypes = {
   handleSave: PropTypes.func.isRequired,
 };
 
-Dashboard = Radium(Dashboard);
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
