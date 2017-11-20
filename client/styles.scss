@@ -1,5 +1,41 @@
 @import '../sass/palette.scss';
+@font-face {
+  font-family: AlegreyaReg;
+  src: url("../sass/fonts/alegreya/Alegreya-Regular.ttf");
+}
+@font-face {
+  font-family: OpenSansReg;
+  src: url("../sass/fonts/opensans/OpenSans-Regular.ttf");
+}
 
 body {
-  //background: $darkBlue;
+  background: $darkBlue;
+
+  a,
+  h2,
+  h3,
+  p {
+    color: $lighterGreen;
+  }
+
+  a,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: AlegreyaReg;
+  }
+
+  p {
+    font-family: OpenSansReg;
+  }
+
+  h3 {
+    font-size: 140%;
+  }
+
+  h2 {
+    font-size: 160%;
+  }
 }

@@ -45,34 +45,31 @@ class PostList extends React.Component {
     const posts = this.props.posts;
     const signedUp = this.props.signedUp;
 
-    const postDivs = posts.map(post => (<div className="post-item" key={post._id}>
-      <a href="" onClick={this.handleClick}>
-        <h2 className={post._id}>{post.title}</h2>
-      </a>
-      <div className="post-details">
-        <h3 className="post-date">Date: {post.date}</h3>
-        <h3 className="author">Posted by: {post.author}</h3>
-      </div>
-      <p className="body">{post.body}</p>
+    const postDivs = posts.map(post => (<Col xs={12} key={post._id}>
+      <div className="post-item" key={post._id}>
+        <a href="" onClick={this.handleClick}>
+          <h2 className={post._id}>{post.title}</h2>
+        </a>
+        <div className="post-details">
+          <h3 className="post-date">Date: {post.date}</h3>
+          <h3 className="author">Posted by: {post.author}</h3>
+        </div>
+        <p className="body">{post.body}</p>
 
-    </div>));
+      </div>
+    </Col>));
 
     const { redirect } = this.props;
 
-    return (<Grid>
-      <Row>
+    return (<Row>
 
-        <div className="post-container">
-          {
-            redirect
-              ? (<SinglePost currPost={this.props.currPost} changeRedirect={this.props.changeRedirect} />)
-              : <Col xs={5}>{postDivs}</Col>
-          }
+      {
+        redirect
+          ? (<SinglePost currPost={this.props.currPost} changeRedirect={this.props.changeRedirect} />)
+          : <div>{postDivs}</div>
+      }
 
-        </div>
-
-      </Row>
-    </Grid>);
+    </Row>);
   }
 }
 

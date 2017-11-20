@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { connect } from 'react-redux';
 import { changeRedirect } from '../../redux/actions/postActions';
 import { Row, Col } from 'react-bootstrap';
@@ -36,25 +35,29 @@ class Navigation extends React.Component {
 
   render() {
     return (<Row>
-      <Col xs={12} className="nav-btn-wrap">
-        <button className="btn btn-lg navBtn pull-right" onClick={this.toggleNav}>
-          <span className="glyphicon glyphicon-menu-hamburger" />
-        </button>
-      </Col>
-      {
-        this.state.navShow
-          ? <Col xs={8} className="nav-link-wrap">
-            <nav>
-              <Link to="/" className="nav-link">Lucid Web Dream</Link>
-              <Link to="/" className="nav-link" onClick={this.changeRedirect}>Blog home</Link>
-              {!this.props.loggedIn && <Link to="/login" className="nav-link">Login</Link>}
-              {this.props.loggedIn && <button onClick={this.props.logout}>Logout</button>}
-              {this.props.loggedIn && <Link to="/dashboard" className="nav-link" onClick={this.changeRedirect}>Dashboard</Link>}
-            </nav>
+      <Col xs={12} className="nav-wrap">
+        <Row>
+          <Col xs={12} className="nav-btn-wrap">
+            <button className="btn btn-md navBtn pull-right" onClick={this.toggleNav}>
+              <span className="glyphicon glyphicon-menu-hamburger" />
+            </button>
           </Col>
-          : null
-      }
+          {
+            this.state.navShow
+              ? <Col xs={10} xsOffset={1} className="nav-link-wrap">
+                <nav>
 
+                  <Link to="/" className="nav-link" onClick={this.changeRedirect}>Home</Link>
+                  {!this.props.loggedIn && <Link to="/login" className="nav-link">Login</Link>}
+                  {this.props.loggedIn && <button onClick={this.props.logout}>Logout</button>}
+                  {this.props.loggedIn && <Link to="/dashboard" className="nav-link" onClick={this.changeRedirect}>Dashboard</Link>}
+                </nav>
+              </Col>
+
+              : null
+          }
+        </Row>
+      </Col>
     </Row>);
   }
 }
