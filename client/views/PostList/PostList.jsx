@@ -54,7 +54,7 @@ class PostList extends React.Component {
         <h3 className="author">Posted by: {post.author}</h3>
       </div>
       <p className="body">{post.body}</p>
-      <h2>Miillllk</h2>
+
     </div>));
 
     const { redirect } = this.props;
@@ -66,7 +66,7 @@ class PostList extends React.Component {
           {
             redirect
               ? (<SinglePost currPost={this.props.currPost} changeRedirect={this.props.changeRedirect} />)
-              : <Col xs={5}>({postDivs})</Col>
+              : <Col xs={5}>{postDivs}</Col>
           }
 
         </div>

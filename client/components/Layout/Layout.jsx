@@ -3,6 +3,7 @@ import Navigation from '../Navigation/Navigation';
 
 import { connect } from 'react-redux';
 import { logout } from '../../redux/actions/signUpActions';
+import { Grid } from 'react-bootstrap';
 
 const mapStateToProps = state => ({ loggedIn: state.signup.loggedIn });
 
@@ -15,10 +16,10 @@ const mapDispatchToProps = dispatch => ({
 class Layout extends React.Component {
   render() {
     // console.log(this.props.posts);
-    return (<div className="container">
+    return (<Grid>
       <Navigation loggedIn={this.props.loggedIn} logout={this.props.logout} /> {this.props.children}
 
-    </div>);
+    </Grid>);
   }
 }
 
