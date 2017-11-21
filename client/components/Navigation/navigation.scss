@@ -22,7 +22,8 @@
 
   .nav-link-wrap {
     margin-top: 30px;
-    border: 1px solid $lighterGreen;
+    border-top: 1px solid $lighterGreen;
+    border-bottom: 1px solid $lighterGreen;
     background: #0A1827;
   }
 }

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import Layout from '../../components/Layout/Layout';
-
+import { Row } from 'react-bootstrap';
 import PostList from '../PostList/PostList';
 import { fetchPosts } from '../../redux/actions/postActions';
 
@@ -35,8 +35,9 @@ class Home extends React.Component {
 
     console.log(posts);
     return (<Layout >
-      <PostList posts={posts} />
-
+      <Row>
+        <PostList posts={posts} />
+      </Row>
     </Layout>);
   }
 }
