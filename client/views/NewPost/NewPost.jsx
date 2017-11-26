@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import Layout from '../../components/Layout/Layout';
-
+import { Col } from 'react-bootstrap';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
+import Layout from '../../components/Layout/Layout';
 
 import { newPost, fetchPosts } from '../../redux/actions/postActions';
 
@@ -55,21 +55,27 @@ class NewPost extends React.Component {
 
   render() {
     return (<Layout>
-      {this.state.submitted && <Redirect push="push" to="/dashboard" />}
-      <section className="form-wrapper" id="post-form">
+      <Col xs={12}>
+        {this.state.submitted && <Redirect push="push" to="/dashboard" />}
 
-        <form className="new-post" onSubmit={this.handleSubmit}>
-          <h2>New Post</h2>
-          <label htmlFor="post-title">Post title</label><br />
-          <input name="title" type="text" placeholder="Post title" onChange={this.handleInput} />
-          <div className="text-wrapper">
+        <form className="new-post-form" onSubmit={this.handleSubmit}>
+          <h2 className="text-center">New Post</h2>
+          <div>
+            <label htmlFor="post-title">Post title</label><br /></div>
+          <div>
+            <input name="title" type="text" placeholder="Post title" onChange={this.handleInput} className="input-form" /></div>
+
+          <div>
             <label htmlFor="post-body">Post body</label><br />
-            <textarea name="body" className="text-area" onChange={this.handleInput} />
+            <textarea name="body" className="input-form" onChange={this.handleInput} />
           </div>
-          <button type="submit" className="sub-button">Submit</button>
-        </form>
-      </section>
+          <div className="form-btns">
+            <button type="submit" className="sub-button">Submit</button>
+          </div>
 
+        </form>
+
+      </Col>
     </Layout>);
   }
 }

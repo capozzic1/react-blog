@@ -48,7 +48,7 @@ class Navigation extends React.Component {
 
                 <Link to="/" className="nav-link" onClick={this.changeRedirect}>Home</Link>
                 {!this.props.loggedIn && <Link to="/login" className="nav-link">Login</Link>}
-                {this.props.loggedIn && <button onClick={this.props.logout}>Logout</button>}
+                {this.props.loggedIn && <a onClick={this.props.logout} className="nav-link">Logout</a>}
                 {this.props.loggedIn && <Link to="/dashboard" className="nav-link" onClick={this.changeRedirect}>Dashboard</Link>}
               </nav>
             </Col>
