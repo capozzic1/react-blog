@@ -16,8 +16,9 @@ import { dashLogged } from '../../redux/actions/signUpActions';
 import createHistory from 'history/createBrowserHistory';
 import EditModal from '../../components/EditModal/EditModal';
 import DashButtons from '../../components/DashButtons/DashButtons';
-
+import { Col } from 'react-bootstrap';
 import SinglePost from '../SinglePost/SinglePost';
+import './Dashboard.scss';
 
 const history = createHistory();
 
@@ -146,7 +147,7 @@ class Dashboard extends React.Component {
 
     return (<div className="dash-wrap">
       <DashButtons handleEdit={this.handleEdit} confirmDelete={this.confirmDelete} deleteAll={this.deleteAll} />
-      <table >
+      <table className="dash-table">
         <tbody>
           <tr className="row-headers">
             <th>Check</th>
@@ -164,12 +165,12 @@ class Dashboard extends React.Component {
 
   render() {
     return (<Layout>
+      <Col xs={12}>
+        <div className="dash-container">
 
-      <div className="dash-container">
-
-        {this.props.posts.length >= 0 && this.conditionalRender()}
-      </div>
-
+          {this.props.posts.length >= 0 && this.conditionalRender()}
+        </div>
+      </Col>
     </Layout>);
   }
 }

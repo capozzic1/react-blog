@@ -65,7 +65,7 @@ class PostList extends React.Component {
       {
         redirect
           ? (<SinglePost currPost={this.props.currPost} changeRedirect={this.props.changeRedirect} />)
-          : <Col xs={10} xsOffset={1}>{postDivs}</Col>
+          : <Col xs={10} xsOffset={1} className="post-container">{postDivs}</Col>
       }
 
     </div>);

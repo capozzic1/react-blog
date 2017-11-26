@@ -1,0 +1,37 @@
+@import '../../../sass/palette.scss';
+
+label {
+  font-size: 140%;
+}
+
+.input-login input {
+  width: 95%;
+  padding: 2px;
+  /* border: 1px solid black; */
+}
+
+form.login-form {
+  position: relative;
+  top: 50%;
+  transform: translateY(40%);
+}
+
+.login-label {
+  position: relative;
+  top: 15px;
+}
+
+.form-btns {
+  position: relative;
+  top: 15px;
+  display: flex;
+  justify-content: center;
+
+  button {
+    border: none;
+    padding: 10px;
+    margin-left: 5px;
+    font-size: 150%;
+    font-weight: 600;
+  }
+}

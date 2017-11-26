@@ -1,0 +1,20 @@
+@import '../../../sass/palette.scss';
+@media screen and (max-width: 768px) {
+  .dashBtns {
+    margin-top: 20%;
+
+    button {
+      display: block;
+      width: 60%;
+      margin: 5px auto;
+      border: 1px solid black;
+      font-weight: 600;
+      font-size: 120%;
+    }
+
+    .new-post a {
+      color: $darkBlue;
+      font-weight: 600;
+    }
+  }
+}

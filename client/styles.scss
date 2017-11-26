@@ -10,14 +10,17 @@
 
 body {
   background: $darkBlue;
+  overflow-x: hidden;
 
   a,
   h2,
   h3,
+  label,
   p {
     color: $lighterGreen;
   }
 
+  ,
   a,
   h1,
   h2,
@@ -27,6 +30,7 @@ body {
     font-family: AlegreyaReg;
   }
 
+  label,
   p {
     font-family: OpenSansReg;
   }
@@ -37,5 +41,25 @@ body {
 
   h2 {
     font-size: 160%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 0.7;
+  }
+
+  button {
+    background: $lighterGreen;
+    color: $darkBlue;
+  }
+
+  table,
+  td,
+  th {
+    color: $lighterGreen;
   }
 }
