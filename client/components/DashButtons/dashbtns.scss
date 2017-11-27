@@ -24,7 +24,7 @@ $margin: 20px;
       @include btn;
     }
   }
-  @media screen and (min-width: 426px) and (max-width: 768px) {
+  @media screen and (min-width: 426px) {
     button {
       @include btn;
       display: inline;
