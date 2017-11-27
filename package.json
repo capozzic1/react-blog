@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "ajv": "^5.2.2",
+    "autoprefixer": "^7.1.6",
     "axios": "^0.16.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
