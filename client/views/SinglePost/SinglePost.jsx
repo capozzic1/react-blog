@@ -11,18 +11,19 @@ class SinglePost extends React.Component {
 
   render() {
     const post = this.props.currPost;
-    return (<Col xs={12}>
-      <div className="single-wrap">
-        <div className="single-post">
-          <div className="titleAuthor">
+    return (<Col xs={10} xsOffset={1}>
+      <div className="single-post-item">
+        <div className="post-details">
+          <div className="title-date">
             <h2 className="post-title">{post.title}</h2>
-            <h3 className="post-author">Posted by: {post.author}</h3>
-          </div>
-          <div className="postDate">
             <h3 className="post-date">Date: {post.date}</h3>
           </div>
-          <p className="post-body">{post.body}</p>
-
+          <div className="author">
+            <h3 className="post-author">Posted by: {post.author}</h3>
+          </div>
+          <div className="body">
+            <p className="post-body">{post.body}</p>
+          </div>
         </div>
       </div>
     </Col>);

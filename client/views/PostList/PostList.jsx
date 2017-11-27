@@ -45,18 +45,28 @@ class PostList extends React.Component {
     const posts = this.props.posts;
     const signedUp = this.props.signedUp;
 
-    const postDivs = posts.map(post => (<div className="post-item" key={post._id}>
+    const postDivs = posts.map(post => (<Col md={4} sm={6}>
+      <div className="post-item" key={post._id}>
 
-      <div className="post-details">
-        <a href="" onClick={this.handleClick}>
-          <h2 className={post._id}>{post.title}</h2>
-        </a>
-        <h3 className="post-date">Date: {post.date}</h3>
-        <h3 className="author">Posted by: {post.author}</h3>
+        <div className="post-details">
+          <div className="title-date">
+            <a href="" onClick={this.handleClick} className="post-title">
+              <h2 className={post._id}>{post.title}</h2>
+
+            </a>
+            <h3 className="post-date">Date: {post.date}</h3>
+          </div>
+          <div className="author">
+            <h3>Posted by: {post.author}</h3>
+          </div>
+
+        </div>
+        <div className="body">
+          <p>{post.body}</p>
+        </div>
+
       </div>
-      <p className="body">{post.body}</p>
-
-    </div>));
+    </Col>));
 
     const { redirect } = this.props;
 
@@ -65,7 +75,9 @@ class PostList extends React.Component {
       {
         redirect
           ? (<SinglePost currPost={this.props.currPost} changeRedirect={this.props.changeRedirect} />)
-          : <Col xs={10} xsOffset={1} className="post-container">{postDivs}</Col>
+          : <Col xs={10} xsOffset={1} className="post-container">
+            <Row>{postDivs}</Row>
+          </Col>
       }
 
     </div>);

@@ -1,5 +1,6 @@
 @import '../sass/palette';
 @import '../sass/partials/forms';
+@import '../sass/partials/singlepost';
 @font-face {
   font-family: AlegreyaReg;
   src: url("../sass/fonts/alegreya/Alegreya-Regular.ttf");
@@ -50,7 +51,7 @@ body {
   h4,
   h5,
   h6 {
-    line-height: 0.7;
+    line-height: 1.3;
   }
 
   button {
