@@ -1,39 +1,40 @@
 @import '../../../sass/palette.scss';
-@media screen and (max-width: 768px) {
-  .dash-table {
-    width: 100%;
-    margin: 10% auto 0;
 
-    tbody {
-      td,
-      th {
-        flex: 1;
-        text-align: center;
-      }
+.dash-table {
+  width: 100%;
+  margin: 10% auto 0;
 
-      tr:nth-child(even) {
-        background: $lighterGreen;
+  tbody {
+    td,
+    th {
+      flex: 1;
+      text-align: center;
+      font-size: 150%;
+    }
 
-        a,
-        td {
-          color: $darkBlue !important;
-        }
-      }
+    tr:nth-child(even) {
+      background: $lighterGreen;
 
-      tr {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
+      a,
+      td {
+        color: $darkBlue !important;
       }
     }
 
-    td {
-      padding: 10px;
+    tr {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-items: center;
     }
+  }
 
-    input[type="checkbox"] {
-      height: 40px;
-      width: 30px;
-    }
+  td {
+    padding: 10px;
+  }
+
+  input[type="checkbox"] {
+    height: 40px;
+    width: 30px;
   }
 }
