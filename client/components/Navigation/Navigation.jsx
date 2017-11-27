@@ -1,43 +1,9 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Radium, { Style } from 'radium';
 import { connect } from 'react-redux';
 import { changeRedirect } from '../../redux/actions/postActions';
-
-const color = require('color');
-/* eslint-disable */
-
-var styles = {
-  nav: {
-    position: 'relative',
-
-
-    width: '100%',
-    height: '5em',
-
-  },
-  navlink: {
-    display:'inline-block',
-    color: 'whitesmoke',
-
-
-    ':hover': {
-      textDecoration: 'none',
-      background: '#cccccc',
-      color: 'darkgreen',
-
-    }
-  },
-  navLinkWrap: {
-    position: 'relative',
-    top: '50%',
-    transform: 'translateY(-50%)'
-
-  }
-
-
-};
+import { Row, Col } from 'react-bootstrap';
+import './navigation.scss';
 
 const mapDispatchToProps = dispatch => ({
 
@@ -47,46 +13,51 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class Navigation extends React.Component {
-constructor(props){
-  super(props)
+  constructor(props) {
+    super(props);
 
-  this.changeRedirect = this.changeRedirect.bind(this);
+    this.changeRedirect = this.changeRedirect.bind(this);
+    this.toggleNav = this.toggleNav.bind(this);
+    this.state = {
+      navShow: false,
+    };
+  }
+
+  changeRedirect() {
+    this.props.changeRedirect('false');
+  }
+
+  toggleNav() {
+    this.setState({
+      navShow: !this.state.navShow,
+    });
+  }
+
+  render() {
+    return (<Col xs={12} className="nav-wrap">
+      <Row>
+        <Col xs={12} className="nav-btn-wrap">
+          <button className="btn btn-md navBtn pull-right" onClick={this.toggleNav}>
+            <span className="glyphicon glyphicon-menu-hamburger" />
+          </button>
+        </Col>
+        {
+          this.state.navShow
+            ? <Col xs={10} xsOffset={1} className="nav-link-wrap">
+              <nav>
+
+                <Link to="/" className="nav-link" onClick={this.changeRedirect}>Home</Link>
+                {!this.props.loggedIn && <Link to="/login" className="nav-link">Login</Link>}
+                {this.props.loggedIn && <a onClick={this.props.logout} className="nav-link">Logout</a>}
+                {this.props.loggedIn && <Link to="/dashboard" className="nav-link" onClick={this.changeRedirect}>Dashboard</Link>}
+              </nav>
+            </Col>
+
+            : null
+        }
+      </Row>
+    </Col>);
+  }
 }
-
-changeRedirect(){
-this.props.changeRedirect('false');
-}
-
-render(){
-  return (
-  <nav style={styles.nav}>
-    <div className="nav-link-wrap" style={styles.navLinkWrap}>
-      <RadiumLink to="/"  className="nav-link" style={styles.navlink}>Lucid Web Dream</RadiumLink>
-      <RadiumLink to="/"  className="nav-link" style={styles.navlink} onClick={this.changeRedirect} >Blog home</RadiumLink>
-      {!this.props.loggedIn &&
-        <RadiumLink to="/login"  className="nav-link" style={styles.navlink} >Login</RadiumLink>}
-      {this.props.loggedIn && <button onClick={this.props.logout}>Logout</button>}
-      {this.props.loggedIn &&  <RadiumLink to="/dashboard"  className="nav-link" style={styles.navlink} onClick={this.changeRedirect}>Dashboard</RadiumLink>}
-    </div>
-
-
-    <Style
-      scopeSelector=".nav-link"
-      rules={{
-        padding: '10px',
-        fontSize: '1.5em',
-        color: 'black',
-
-      }}
-    />
-  </nav>
-)
-}
-}
-
-
-let RadiumLink = Radium(Link);
-Navigation = Radium(Navigation);
-
 
 export default connect(null, mapDispatchToProps)(Navigation);

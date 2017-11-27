@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "\\client",
+    "\\client\\components\\Navigation",
+    "\\client\\components\\SignUpForm",
+    "\\client\\views",
+    "\\client\\views\\Dashboard",
+    "\\client\\views\\Home",
+    "\\client\\views\\LoginPage",
+    "\\client\\views\\NewPost",
+    "\\client\\views\\PostList",
+    "\\client\\views\\SignUp",
+    "\\client\\views\\SinglePost"
+  ],
+  "PreviewInSolutionExplorer": false
+}

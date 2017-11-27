@@ -1,0 +1,39 @@
+@import '../../../sass/palette.scss';
+@media screen and (max-width: 768px) {
+  .dash-table {
+    width: 100%;
+    margin: 10% auto 0;
+
+    tbody {
+      td,
+      th {
+        flex: 1;
+        text-align: center;
+      }
+
+      tr:nth-child(even) {
+        background: $lighterGreen;
+
+        a,
+        td {
+          color: $darkBlue !important;
+        }
+      }
+
+      tr {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+      }
+    }
+
+    td {
+      padding: 10px;
+    }
+
+    input[type="checkbox"] {
+      height: 40px;
+      width: 30px;
+    }
+  }
+}

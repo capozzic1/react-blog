@@ -1,34 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Radium from 'radium';
+import './dashbtns.scss';
 import PropTypes from 'prop-types';
-
-const styles = {
-  btn: {
-    width: '9em',
-    background: 'ghostwhite',
-    fontSize: '18px',
-    padding: '8px',
-    border: '1px solid lightblue',
-    marginLeft: '10px',
-    fontWeight: '800',
-  },
-  btnsContain: {
-    width: '100%',
-    textAlign: 'center',
-  },
-};
-
+import { Col, Row } from 'react-bootstrap';
 
 const DashButtons = props => (
-  // on click, goes to a form for create a new post
-  <div className="dashBtns" style={styles.btnsContain}>
-    <button style={styles.btn} className="edit btn" onClick={props.handleEdit}>Edit</button>
-    <button style={styles.btn} className="delete btn" onClick={props.confirmDelete}>Delete</button>
-    <button style={styles.btn} className="deleteAll btn" onClick={props.deleteAll}>Delete all posts</button>
-    <button style={styles.btn} className="btn"><Link to="/newpost">New Post</Link></button>
-  </div>
-);
+// on click, goes to a form for create a new post
+  <Row>
+    <Col xs={12}>
+      <div className="dashBtns">
+        <button className="edit btn" onClick={props.handleEdit}>Edit</button>
+        <button className="delete btn" onClick={props.confirmDelete}>Delete</button>
+        <button className="deleteAll btn" onClick={props.deleteAll}>Delete all posts</button>
+        <button className="btn new-post">
+          <Link to="/newpost">New Post</Link>
+        </button>
+      </div>
+    </Col>
+  </Row>);
 
 DashButtons.propTypes = {
   handleEdit: PropTypes.func.isRequired,
@@ -36,4 +25,4 @@ DashButtons.propTypes = {
   deleteAll: PropTypes.func.isRequired,
 };
 
-export default Radium(DashButtons);
+export default DashButtons;

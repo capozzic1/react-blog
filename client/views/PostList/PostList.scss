@@ -1,0 +1,11 @@
+.post-container {
+  position: relative;
+  top: 20px;
+
+  .post-item,
+  .single-post-item {
+    border: 1px solid #9AC0BA;
+    margin: 15px 0;
+    padding: 15px;
+  }
+}

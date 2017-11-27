@@ -1,0 +1,29 @@
+@import '../../../sass/palette.scss';
+
+.nav-wrap {
+  .navBtn {
+    position: relative;
+    top: 15px;
+    background: $lighterGreen;
+    font-size: 25px;
+    z-index: 20;
+    display: flex;
+  }
+
+  span {
+    color: $darkBlue;
+  }
+
+  a.nav-link {
+    display: block;
+    font-size: 170%;
+    text-align: center;
+  }
+
+  .nav-link-wrap {
+    margin-top: 30px;
+    border-top: 1px solid $lighterGreen;
+    border-bottom: 1px solid $lighterGreen;
+    background: #0A1827;
+  }
+}

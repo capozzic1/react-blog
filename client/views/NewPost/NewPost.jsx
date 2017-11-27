@@ -1,12 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import Layout from '../../components/Layout/Layout';
-import Radium, { Style } from 'radium';
+import { Col } from 'react-bootstrap';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
+import Layout from '../../components/Layout/Layout';
 
 import { newPost, fetchPosts } from '../../redux/actions/postActions';
-
 
 const mapDispatchToProps = dispatch => ({
   handlePost: (arg1, arg2, arg3) => {
@@ -17,11 +16,6 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const styles = {
-  formWrap: {
-    height: '100vw',
-  },
-};
 class NewPost extends React.Component {
   constructor(props) {
     super(props);
@@ -54,68 +48,36 @@ class NewPost extends React.Component {
     const dateObj = new Date();
     const currentDate = dateObj.toString();
 
-
     this.props.handlePost(this.state.title, this.state.body, currentDate);
 
-    this.setState({
-      submitted: true,
-    });
+    this.setState({ submitted: true });
   }
 
-
   render() {
-    return (
-      <Layout>
-        { this.state.submitted && <Redirect push to="/dashboard" />}
-        <section className="form-wrapper" id="post-form" style={styles.formWrap}>
+    return (<Layout>
+      <Col xs={12}>
+        {this.state.submitted && <Redirect push="push" to="/dashboard" />}
 
-          <form className="new-post" onSubmit={this.handleSubmit}>
-            <h2>New Post</h2>
-            <label htmlFor="post-title">Post title</label><br />
-            <input
-              name="title"
-              type="text"
-              placeholder="Post title"
-              onChange={this.handleInput}
-            />
-            <div className="text-wrapper">
-              <label htmlFor="post-body">Post body</label><br />
-              <textarea name="body" className="text-area" onChange={this.handleInput} />
-            </div>
-            <button type="submit" className="sub-button" >Submit</button>
-          </form>
-        </section>
-        <Style
-          scopeSelector=".form-wrapper"
-          rules={{
+        <form className="new-post-form" onSubmit={this.handleSubmit}>
+          <h2 className="text-center">New Post</h2>
+          <div>
+            <label htmlFor="post-title">Post title</label><br /></div>
+          <div>
+            <input name="title" type="text" placeholder="Post title" onChange={this.handleInput} className="input-form" /></div>
 
-            'input, textarea': {
-              width: '20em',
-              padding: '10px',
-            },
-            '.text-wrapper': {
-              marginTop: '14px',
+          <div>
+            <label htmlFor="post-body">Post body</label><br />
+            <textarea name="body" className="input-form" onChange={this.handleInput} />
+          </div>
+          <div className="form-btns">
+            <button type="submit" className="sub-button">Submit</button>
+          </div>
 
-            },
-            '.new-post': {
-              margin: '0 auto',
-              width: '40em',
-              color: 'whitesmoke',
-            },
-            '.sub-button': {
-              background: 'skyblue',
-              border: '2px solid darkblue',
-              padding: '10px',
-              width: '10em',
-              marginTop: '8px',
-              fontWeight: 600,
-            },
-          }}
-        />
-      </Layout>
-    );
+        </form>
+
+      </Col>
+    </Layout>);
   }
 }
 
-NewPost = Radium(NewPost);
 export default connect(null, mapDispatchToProps)(NewPost);
