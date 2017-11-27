@@ -3,9 +3,9 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 const buildDirectory = 'public';
-
 
 const clientConfig = {
   entry: './client/index.jsx',
@@ -13,7 +13,6 @@ const clientConfig = {
     path: path.resolve(buildDirectory),
     publicPath: '/',
     filename: 'app.js',
-
   },
 
   externals: {
@@ -30,13 +29,31 @@ const clientConfig = {
         options: {
           presets: ['react', 'es2015', 'airbnb', 'stage-0'],
         },
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg)$/i,
+      }, {
+        test: /\.(scss|css)$/,
         use: [
-          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false',
+          {
+            loader: 'style-loader',
+          }, {
 
+            loader: 'css-loader',
+          }, {
+            loader: 'sass-loader',
+          }, {
+            loader: 'postcss-loader',
+            options: {
+              plugins() {
+                return [autoprefixer];
+              },
+            },
+          },
+        ],
+      }, {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: 'url-loader',
+          },
         ],
       },
     ],
@@ -45,22 +62,16 @@ const clientConfig = {
     extensions: ['.js', '.jsx'],
   },
 
-
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-    new CleanWebpackPlugin(['public'], { exclude: ['images']}),
-    new HtmlWebpackPlugin({
-      title: 'A react-redux blog',
-      template: 'index.html',
-    }),
+    new CleanWebpackPlugin(['public'], { exclude: ['images'] }),
+    new HtmlWebpackPlugin({ title: 'A react-redux blog', template: 'index.html' }),
     new UglifyJSPlugin(),
-
   ],
 };
-
 
 module.exports = clientConfig;

@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-
+const autoprefixer = require('autoprefixer');
 // env
 const buildDirectory = 'public';
 
@@ -38,6 +38,13 @@ const clientConfig = {
             loader: 'css-loader',
           }, {
             loader: 'sass-loader',
+          }, {
+            loader: 'postcss-loader',
+            options: {
+              plugins() {
+                return [autoprefixer];
+              },
+            },
           },
         ],
       }, {
@@ -48,6 +55,7 @@ const clientConfig = {
           },
         ],
       },
+
     ],
   },
   resolve: {
