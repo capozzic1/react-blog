@@ -19,7 +19,7 @@ class Navigation extends React.Component {
     this.changeRedirect = this.changeRedirect.bind(this);
     this.toggleNav = this.toggleNav.bind(this);
     this.state = {
-      navShow: false,
+      navShow: true,
     };
   }
 
@@ -36,27 +36,19 @@ class Navigation extends React.Component {
   render() {
     return (<Col xs={12} className="nav-wrap">
       <Row>
-        <Col xs={12} className="nav-btn-wrap">
-          <button className="btn btn-md navBtn pull-right" onClick={this.toggleNav}>
-            <span className="glyphicon glyphicon-menu-hamburger" />
-          </button>
+
+        <Col xs={10} sm={6} smOffset={3} lg={6} xsOffset={1} className="nav-link-wrap">
+          <nav>
+
+            <Link to="/" className="nav-link" onClick={this.changeRedirect}>Home</Link>
+            {!this.props.loggedIn && <Link to="/login" className="nav-link">Login</Link>}
+            {this.props.loggedIn && <a onClick={this.props.logout} className="nav-link">Logout</a>}
+            {this.props.loggedIn && <Link to="/dashboard" className="nav-link" onClick={this.changeRedirect}>Dashboard</Link>}
+          </nav>
         </Col>
-        {
-          this.state.navShow
-            ? <Col xs={10} xsOffset={1} className="nav-link-wrap">
-              <nav>
 
-                <Link to="/" className="nav-link" onClick={this.changeRedirect}>Home</Link>
-                {!this.props.loggedIn && <Link to="/login" className="nav-link">Login</Link>}
-                {this.props.loggedIn && <a onClick={this.props.logout} className="nav-link">Logout</a>}
-                {this.props.loggedIn && <Link to="/dashboard" className="nav-link" onClick={this.changeRedirect}>Dashboard</Link>}
-              </nav>
-            </Col>
-
-            : null
-        }
       </Row>
-    </Col>);
+            </Col>);
   }
 }
 

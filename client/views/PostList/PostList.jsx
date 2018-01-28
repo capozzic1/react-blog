@@ -45,7 +45,7 @@ class PostList extends React.Component {
     const posts = this.props.posts;
     const signedUp = this.props.signedUp;
 
-    const postDivs = posts.map(post => (<Col md={4} sm={6}>
+    const postDivs = posts.map(post => (<Col md={8}>
       <div className="post-item" key={post._id}>
 
         <div className="post-details">
@@ -66,21 +66,23 @@ class PostList extends React.Component {
         </div>
 
       </div>
-    </Col>));
+                                        </Col>));
 
     const { redirect } = this.props;
 
     return (<div>
-
+      <Col md={6} mdOffset={3}>
+        <h1 className="text-center">Blog of the century</h1>
+      </Col>
       {
         redirect
           ? (<SinglePost currPost={this.props.currPost} changeRedirect={this.props.changeRedirect} />)
-          : <Col xs={10} xsOffset={1} className="post-container">
+          : <Col md={12} lg={12} xs={10} xsOffset={1} mdOffset={2} className="post-container">
             <Row>{postDivs}</Row>
           </Col>
       }
 
-    </div>);
+            </div>);
   }
 }
 
