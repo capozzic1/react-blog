@@ -71,9 +71,9 @@ class PostList extends React.Component {
     const { redirect } = this.props;
 
     return (<div>
-      <Col md={6} mdOffset={3}>
-        <h1 className="text-center">Blog of the century</h1>
-      </Col>
+
+      <h1 className="text-center">Blog of the century</h1>
+
       {
         redirect
           ? (<SinglePost currPost={this.props.currPost} changeRedirect={this.props.changeRedirect} />)
