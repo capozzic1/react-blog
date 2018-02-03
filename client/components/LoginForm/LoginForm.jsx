@@ -38,7 +38,7 @@ class LoginForm extends React.Component {
 
   render() {
     const {handleSubmit, pristine, reset, submitting} = this.props;
-    return (<Col xs={12}>
+    return (<Col sm={6} smOffset={3} xs={12}>
       <form onSubmit={handleSubmit(this.onSubmit)} className="login-form">
         <div className="login-label-wrap">
           <label htmlFor="username" className="login-label">Username</label>

@@ -55,7 +55,7 @@ class EditModal extends React.Component {
           <button type="button" onClick={this.handleCancel.bind(this)}>Cancel</button>
         </div>
       </form>
-    </Col>);
+            </Col>);
   }
 }
 
