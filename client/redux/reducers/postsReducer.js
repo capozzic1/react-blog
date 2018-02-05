@@ -1,5 +1,3 @@
-
-
 export default function reducer(state = {
   posts: [],
   fetching: false,
@@ -13,7 +11,8 @@ export default function reducer(state = {
   boxChecked: false,
 }, action) {
   switch (action.type) {
-    case 'FETCH_POSTS_FUFILLED': {
+    case 'FETCH_POSTS_FUFILLED':
+    {
       return {
         ...state,
         fetching: false,
@@ -21,23 +20,31 @@ export default function reducer(state = {
         posts: action.payload,
       };
     }
-    case 'FETCH_POSTS_REJECTED': {
-      return { ...state, fetching: false, error: action.payload };
+    case 'FETCH_POSTS_REJECTED':
+    {
+      return {
+        ...state,
+        fetching: false,
+        error: action.payload,
+      };
     }
-    case 'DELETE_POSTS_FUFILLED': {
+    case 'DELETE_POSTS_FUFILLED':
+    {
       return {
         ...state,
         deleted: true,
         posts: action.payload,
       };
     }
-    case 'NEW_POST': {
+    case 'NEW_POST':
+    {
       return {
         ...state,
       };
     }
-/* eslint-disable indent, linebreak-style */
-    case 'FIND_SINGLE_POST': {
+    /* eslint-disable indent, linebreak-style */
+    case 'FIND_SINGLE_POST':
+      {
         const posts = state.posts;
         const len = state.posts.length;
         const postId = action.payload;
@@ -46,47 +53,60 @@ export default function reducer(state = {
             return {
               ...state,
               currentPostInfo: posts[i],
-
             };
           }
         }
-    }
+      }
 
-    case 'CHANGE_REDIRECT_STATUS': {
-      const bool = action.payload !== 'false';
+    case 'CHANGE_REDIRECT_STATUS':
+      {
+        const bool = action.payload !== 'false';
 
-      return { ...state, redirect: bool };
-    }
-
-    case 'CHANGE_EDIT_STATUS': {
-      return { ...state, edit: action.payload };
-    }
-
-    case 'EDITED_POST': {
-      return {
-        ...state,
-        posts: action.payload,
-      };
-    }
-    case 'CURRENT_POST': {
-      if (action.payload) {
         return {
           ...state,
-        editPostId: action.payload,
-        boxChecked: true,
+          redirect: bool,
         };
       }
+
+    case 'CHANGE_EDIT_STATUS':
+      {
+        return {
+          ...state,
+          edit: action.payload,
+        };
+      }
+
+    case 'EDITED_POST':
+      {
+        return {
+          ...state,
+          posts: action.payload,
+        };
+      }
+    case 'CURRENT_POST':
+      {
+        if (action.payload) {
+          return {
+            ...state,
+            editPostId: action.payload,
+            boxChecked: true,
+          };
+        }
         return {
           ...state,
           editPostId: null,
           boxChecked: false,
         };
-    }
+      }
 
-    case 'LOAD': {
-      return { ...state,
-            data: action.payload };
-    }
+    case 'LOAD':
+      {
+        return {
+          ...state,
+          data: action.payload,
+        };
+      }
+    default:
   }
-    return state;
+  return state;
 }

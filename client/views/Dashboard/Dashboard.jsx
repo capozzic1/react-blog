@@ -137,7 +137,7 @@ class Dashboard extends React.Component {
       </td>
       <td>{post.author}</td>
       <td>{post.date}</td>
-    </tr>));
+                                    </tr>));
 
     if (this.props.redirect) {
       return (<SinglePost currPost={this.props.currPost} changeRedirect={this.props.changeRedirect} />);
@@ -160,7 +160,7 @@ class Dashboard extends React.Component {
           {rows}
         </tbody>
       </table>
-    </div>);
+            </div>);
   }
 
   render() {
@@ -171,7 +171,7 @@ class Dashboard extends React.Component {
           {this.props.posts.length >= 0 && this.conditionalRender()}
         </div>
       </Col>
-    </Layout>);
+            </Layout>);
   }
 }
 

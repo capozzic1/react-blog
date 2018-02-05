@@ -13,17 +13,12 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({ loggedIn: state.signup.loggedIn });
 
-class LoginPage extends React.Component {
-  render() {
-    return (<Layout>
+export const LoginPage = props => (<Layout>
 
-      {this.props.loggedIn && <Redirect to="/dashboard" />}
-      <div className="login-wrap">
-        <LoginForm login={this.props.login} />
-      </div>
-
-    </Layout>);
-  }
-}
+  {props.loggedIn && <Redirect to="/dashboard" />}
+  <div className="login-wrap">
+    <LoginForm login={props.login} />
+  </div>
+                                   </Layout>);
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
