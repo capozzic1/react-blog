@@ -10,39 +10,40 @@ export default function reducer(state = {
   initialVals: '',
   boxChecked: false,
 }, action) {
+  /* eslint-disable */
   switch (action.type) {
     case 'FETCH_POSTS_FUFILLED':
-    {
+
       return {
         ...state,
         fetching: false,
         fetched: true,
-        posts: action.payload,
+        posts: action.payload
       };
-    }
+
     case 'FETCH_POSTS_REJECTED':
-    {
-      return {
-        ...state,
-        fetching: false,
-        error: action.payload,
-      };
-    }
+      {
+        return {
+          ...state,
+          fetching: false,
+          error: action.payload
+        };
+      }
     case 'DELETE_POSTS_FUFILLED':
-    {
-      return {
-        ...state,
-        deleted: true,
-        posts: action.payload,
-      };
-    }
+      {
+        return {
+          ...state,
+          deleted: true,
+          posts: action.payload
+        };
+      }
     case 'NEW_POST':
-    {
-      return {
-        ...state,
-      };
-    }
-    /* eslint-disable indent, linebreak-style */
+      {
+        return {
+          ...state
+        };
+      }
+      /* eslint-disable indent, linebreak-style */
     case 'FIND_SINGLE_POST':
       {
         const posts = state.posts;
@@ -52,7 +53,7 @@ export default function reducer(state = {
           if (posts[i]._id === postId) {
             return {
               ...state,
-              currentPostInfo: posts[i],
+              currentPostInfo: posts[i]
             };
           }
         }
@@ -64,7 +65,7 @@ export default function reducer(state = {
 
         return {
           ...state,
-          redirect: bool,
+          redirect: bool
         };
       }
 
@@ -72,7 +73,7 @@ export default function reducer(state = {
       {
         return {
           ...state,
-          edit: action.payload,
+          edit: action.payload
         };
       }
 
@@ -80,7 +81,7 @@ export default function reducer(state = {
       {
         return {
           ...state,
-          posts: action.payload,
+          posts: action.payload
         };
       }
     case 'CURRENT_POST':
@@ -89,23 +90,16 @@ export default function reducer(state = {
           return {
             ...state,
             editPostId: action.payload,
-            boxChecked: true,
+            boxChecked: true
           };
         }
         return {
           ...state,
           editPostId: null,
-          boxChecked: false,
+          boxChecked: false
         };
       }
 
-    case 'LOAD':
-      {
-        return {
-          ...state,
-          data: action.payload,
-        };
-      }
     default:
   }
   return state;

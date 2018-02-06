@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// async action creators
 export const fetchPosts = () => function (dispatch) {
   dispatch({ type: 'FETCH_POSTS' });
 
@@ -28,26 +29,17 @@ export const newPost = (title, body, date) => function (dispatch) {
   });
 };
 
-export const findSinglePost = postId => function (dispatch) {
-  dispatch({ type: 'FIND_SINGLE_POST', payload: postId });
-};
-
-export const sendEdit = editStatus => function (dispatch) {
-  dispatch({ type: 'CHANGE_EDIT_STATUS', payload: editStatus });
-};
-
 export const handleSave = changes => function (dispatch) {
   axios.put('/edit', { data: changes }).then((response) => {
     dispatch({ type: 'EDITED_POST', payload: response.data });
   });
 };
 
-export const load = data => ({ type: 'LOAD', payload: data });
+// sync action creators
+export const findSinglePost = postId => ({ type: 'FIND_SINGLE_POST', payload: postId });
 
-export const changeRedirect = bool => function (dispatch) {
-  dispatch({ type: 'CHANGE_REDIRECT_STATUS', payload: bool });
-};
+export const sendEdit = editStatus => ({ type: 'CHANGE_EDIT_STATUS', payload: editStatus });
 
-export const checkBoxChange = postId => function (dispatch) {
-  dispatch({ type: 'CURRENT_POST', payload: postId });
-};
+export const changeRedirect = bool => ({ type: 'CHANGE_REDIRECT_STATUS', payload: bool });
+
+export const checkBoxChange = postId => ({ type: 'CURRENT_POST', payload: postId });
