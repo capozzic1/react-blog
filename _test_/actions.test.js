@@ -1,5 +1,14 @@
 import configureStore from 'redux-mock-store'; // ES6 modules
-import { findSinglePost, sendEdit, changeRedirect, checkBoxChange, fetchPosts } from '../client/redux/actions/postActions';
+import * as actions from '../client/redux/constants';
+import {
+  findSinglePost,
+  sendEdit,
+  changeRedirect,
+  checkBoxChange,
+  fetchPosts,
+  deletePosts,
+  newPost
+} from '../client/redux/actions/postActions';
 
 import thunk from 'redux-thunk';
 import axios from 'axios';
@@ -8,8 +17,8 @@ const MockAdapter = require('axios-mock-adapter');
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
-
-/* eslint-disable */
+// This sets the mock adapter on the default instance
+var mock = new MockAdapter(axios);
 
 describe('synchronous action creators', () => {
   let initialState,
@@ -73,12 +82,12 @@ describe('synchronous action creators', () => {
 });
 
 describe('asynchronous action creators', () => {
-  //To be continued
-  it('should fetch posts', () => {
-    let store = mockStore({})
+  let store;
+  beforeEach(() => {
+    store = mockStore({})
+  })
 
-    // This sets the mock adapter on the default instance
-    var mock = new MockAdapter(axios);
+  it('should fetch posts', () => {
 
     // Mock any GET request to /users
     // arguments for reply are (status, data, headers)
@@ -95,6 +104,25 @@ describe('asynchronous action creators', () => {
     return store.dispatch(fetchPosts()).then(() => {
       let actions = store.getActions();
       expect(actions[1].type).toEqual('FETCH_POSTS_FUFILLED');
+    })
+  })
+
+  it('should delete posts', () => {
+    mock.onDelete('/delete').reply(200, {msg: 'DELETED'})
+
+    return store.dispatch(deletePosts()).then(() => {
+      let actions = store.getActions();
+      expect(actions.type).toEqual(actions.DELETE_POSTS_FUFILLED)
+    })
+  })
+
+  it('should make a new post', () => {
+
+    mock.onPost('/newpost').reply(200, {msg: 'newpost'});
+
+    return store.dispatch(newPost()).then(() => {
+      let actions = store.getActions();
+      expect(actions.type).toEqual(actions.NEW_POST);
     })
   })
 });

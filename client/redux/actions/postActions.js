@@ -13,9 +13,9 @@ export const fetchPosts = () => async (dispatch) => {
   }
 };
 
-export const deletePosts = (posts, cb) => (dispatch) => {
+export const deletePosts = (posts, cb) => async (dispatch) => {
   try {
-    axios.delete('/delete', {data: posts}).then((response) => {
+    return await axios.delete('/delete', {data: posts}).then((response) => {
       dispatch({type: actions.DELETE_POSTS_FUFILLED, payload: response.data});
     });
   } catch (err) {
@@ -27,7 +27,7 @@ export const newPost = (title, body, date) => (dispatch) => {
   dispatch({type: actions.NEW_POST});
   try {
 
-    axios.post('/newpost', {
+    return axios.post('/newpost', {
       title,
       body,
       author: 'testUser',

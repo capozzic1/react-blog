@@ -1,3 +1,5 @@
+import * as actions from '../constants';
+
 export default function reducer(state = {
   posts: [],
   fetching: false,
@@ -8,11 +10,11 @@ export default function reducer(state = {
   redirect: false,
   edit: false,
   initialVals: '',
-  boxChecked: false,
+  boxChecked: false
 }, action) {
   /* eslint-disable */
   switch (action.type) {
-    case 'FETCH_POSTS_FUFILLED':
+    case actions.FETCH_POSTS_FUFILLED:
 
       return {
         ...state,
@@ -21,7 +23,7 @@ export default function reducer(state = {
         posts: action.payload
       };
 
-    case 'FETCH_POSTS_REJECTED':
+    case actions.FETCH_POSTS_REJECTED:
       {
         return {
           ...state,
@@ -29,7 +31,7 @@ export default function reducer(state = {
           error: action.payload
         };
       }
-    case 'DELETE_POSTS_FUFILLED':
+    case actions.DELETE_POSTS_FUFILLED:
       {
         return {
           ...state,
@@ -37,14 +39,14 @@ export default function reducer(state = {
           posts: action.payload
         };
       }
-    case 'NEW_POST':
+    case actions.NEW_POST:
       {
         return {
           ...state
         };
       }
       /* eslint-disable indent, linebreak-style */
-    case 'FIND_SINGLE_POST':
+    case actions.FIND_SINGLE_POST:
       {
         const posts = state.posts;
         const len = state.posts.length;
@@ -59,7 +61,7 @@ export default function reducer(state = {
         }
       }
 
-    case 'CHANGE_REDIRECT_STATUS':
+    case actions.CHANGE_REDIRECT_STATUS:
       {
         const bool = action.payload !== 'false';
 
@@ -69,7 +71,7 @@ export default function reducer(state = {
         };
       }
 
-    case 'CHANGE_EDIT_STATUS':
+    case actions.CHANGE_EDIT_STATUS:
       {
         return {
           ...state,
@@ -77,14 +79,14 @@ export default function reducer(state = {
         };
       }
 
-    case 'EDITED_POST':
+    case actions.EDITED_POST:
       {
         return {
           ...state,
           posts: action.payload
         };
       }
-    case 'CURRENT_POST':
+    case actions.CURRENT_POST:
       {
         if (action.payload) {
           return {
