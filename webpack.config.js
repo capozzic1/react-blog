@@ -6,7 +6,7 @@ const buildDirectory = 'public';
 
 const clientConfig = {
   entry: [
-    'webpack-hot-middleware/client?reload=true', './client/index.jsx',
+    'babel-polyfill', 'webpack-hot-middleware/client?reload=true', './client/index.jsx',
   ],
   output: {
     path: path.resolve(buildDirectory),
@@ -26,7 +26,7 @@ const clientConfig = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         options: {
-          presets: ['react', 'es2015', 'airbnb', 'stage-0'],
+          presets: [['env'], 'react', 'es2015', 'airbnb', 'stage-0'],
         },
       }, {
         test: /\.(scss|css)$/,
@@ -55,7 +55,6 @@ const clientConfig = {
           },
         ],
       },
-
     ],
   },
   resolve: {

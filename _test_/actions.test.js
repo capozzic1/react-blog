@@ -1,23 +1,29 @@
 import configureStore from 'redux-mock-store'; // ES6 modules
-import { findSinglePost, sendEdit, changeRedirect, checkBoxChange } from '../client/redux/actions/postActions';
+import { findSinglePost, sendEdit, changeRedirect, checkBoxChange, fetchPosts } from '../client/redux/actions/postActions';
 
-const middlewares = [];
+import thunk from 'redux-thunk';
+import axios from 'axios';
+
+const MockAdapter = require('axios-mock-adapter');
+
+const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
+
 /* eslint-disable */
 
-describe('actions', () => {
+describe('synchronous action creators', () => {
   let initialState,
     store,
     actions;
 
-  let expectedPayload;
+  let expected;
 
   beforeEach(() => {
     // Initialize mockstore with empty state
     initialState = {};
     store = mockStore(initialState);
     actions = store.getActions();
-    expectedPayload = {
+    expected = {
       type: null,
       payload: null
     };
@@ -30,38 +36,65 @@ describe('actions', () => {
 
     // Test if your store dispatched the expected actions
 
-    expectedPayload.type = 'FIND_SINGLE_POST';
-    expectedPayload.payload = postId;
+    expected.type = 'FIND_SINGLE_POST';
+    expected.payload = postId;
 
-    expect(actions).toEqual([expectedPayload]);
+    expect(actions).toEqual([expected]);
   });
 
   it('should send the sendEdit action', () => {
     store.dispatch(sendEdit(true));
 
-    const expectedPayload = {
+    const expected = {
       type: 'CHANGE_EDIT_STATUS',
       payload: true
     };
 
-    expect(actions).toEqual([expectedPayload]);
+    expect(actions).toEqual([expected]);
   });
 
   it('should send the changeRedirect action', () => {
     store.dispatch(changeRedirect(true));
 
-    expectedPayload.type = 'CHANGE_REDIRECT_STATUS';
-    expectedPayload.payload = true;
+    expected.type = 'CHANGE_REDIRECT_STATUS';
+    expected.payload = true;
 
-    expect(actions).toEqual([expectedPayload]);
+    expect(actions).toEqual([expected]);
   });
 
   it('should send the checkBoxChange action', () => {
     store.dispatch(checkBoxChange('test'))
 
-    expectedPayload.type = 'CURRENT_POST';
-    expectedPayload.payload = 'test';
+    expected.type = 'CURRENT_POST';
+    expected.payload = 'test';
 
-    expect(actions).toEqual([expectedPayload])
+    expect(actions).toEqual([expected])
+  })
+});
+
+describe('asynchronous action creators', () => {
+  //To be continued
+  it('should fetch posts', () => {
+    let store = mockStore({})
+
+    // This sets the mock adapter on the default instance
+    var mock = new MockAdapter(axios);
+
+    // Mock any GET request to /users
+    // arguments for reply are (status, data, headers)
+    mock.onGet('/posts').reply(200, {
+      posts: [
+        {
+          _id: 1,
+          name: 'Testing'
+        }
+      ]
+    });
+
+    //this doesn't equal FETCH_POSTS_FUFILLED, it ends up equaling just "FETCH_POSTS"
+    return store.dispatch(fetchPosts()).then(() => {
+      let actions = store.getActions();
+      expect(actions[1].type).toEqual('FETCH_POSTS_FUFILLED');
+    })
   })
 });
