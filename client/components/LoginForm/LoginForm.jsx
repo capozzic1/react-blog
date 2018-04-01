@@ -1,9 +1,9 @@
 import React from 'react';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
-import { connect } from 'react-redux';
+import {Field, reduxForm, formValueSelector} from 'redux-form';
+import {connect} from 'react-redux';
 import renderField from '../FormHelpers/RenderField';
 import createHistory from 'history/createBrowserHistory';
-import { Col } from 'react-bootstrap';
+import {Col} from 'react-bootstrap';
 import './loginForm.scss';
 
 const history = createHistory();
@@ -21,7 +21,7 @@ const validate = (values) => {
 };
 
 /* eslint-disable */
-class LoginForm extends React.Component {
+export class LoginForm extends React.Component {
   constructor(props) {
     super(props)
 
@@ -57,7 +57,7 @@ class LoginForm extends React.Component {
 
         <div className="form-btns">
           <button type="submit" disabled={submitting}>Login</button>
-          <button type="button" disabled={pristine || submitting} onClick={reset}>Clear values</button>
+          <button type="button" className='resetBtn' disabled={pristine || submitting} onClick={reset}>Clear values</button>
         </div>
 
       </form>
